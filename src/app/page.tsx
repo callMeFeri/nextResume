@@ -1,6 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
 import type { NextPage } from "next";
+
 import { Button } from "./components/button/Button";
 
 type Users = {
@@ -30,13 +30,7 @@ const Home: NextPage = () => {
           </div>
         </div>
         <div className="h-screen">
-          <Image
-            src="/ben-kolde-bs2Ba7t69mM-unsplash.jpg"
-            className=""
-            width={700}
-            height={400}
-            alt="photo"
-          />
+          <Image src="" className="" width={700} height={400} alt="photo" />
         </div>
       </div>
     </>
