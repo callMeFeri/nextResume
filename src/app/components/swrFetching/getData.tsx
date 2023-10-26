@@ -3,9 +3,10 @@ import React from "react";
 
 import useSWR from "swr";
 import Image from "next/image";
+
 import { Button } from "../button/Button";
 
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
+const fetcher = (args: string) => fetch(args).then((res) => res.json());
 
 function GetData({ url }: { url: string }) {
   const { data, error, isLoading } = useSWR(url, fetcher, {
@@ -16,8 +17,10 @@ function GetData({ url }: { url: string }) {
   if (error) return <div>failed to load</div>;
   if (isLoading) return <div>loading...</div>;
   return (
-    <div className="text-center pt-20 pb-10">
-      <h1 className="text-5xl">Wellcome To The API Fetching Part</h1>
+    <div className="text-center pt-20 pb-10 ">
+      <h1 className="text-7xl bg-gradient-to-b from-green-800 to-blue-300 bg-clip-text text-transparent">
+        Top Selected Posts
+      </h1>
       <br />
       {data
         .slice(0, 20)

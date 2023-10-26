@@ -3,13 +3,13 @@ import type { NextPage } from "next";
 
 import { Button } from "./components/button/Button";
 
-type Users = {
-  id: number;
-  title: string;
-  albumId: number;
-  url: string;
-  thumbnailUrl: string;
-};
+// type Users = {
+//   id: number;
+//   title: string;
+//   albumId: number;
+//   url: string;
+//   thumbnailUrl: string;
+// };
 
 const Home: NextPage = () => {
   return (
@@ -30,7 +30,12 @@ const Home: NextPage = () => {
           </div>
         </div>
         <div className="h-screen">
-          <Image src="" className="" width={700} height={400} alt="photo" />
+          <Image
+            src="/ben-kolde-bs2Ba7t69mM-unsplash.jpg"
+            width={700}
+            height={400}
+            alt="photo"
+          />
         </div>
       </div>
     </>
