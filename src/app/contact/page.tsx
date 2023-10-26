@@ -8,8 +8,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 const Contact = (): JSX.Element => {
   return (
     <div className="container h-screen">
-      <h1 className="text-2xl text-center top-[20%]">Lets Be In Touch</h1>
-      <div className="flex gap-25 items-center pt-[20%]">
+      <h1 className="text-7xl bg-gradient-to-b from-green-800 to-blue-300 bg-clip-text text-transparent pt-20">
+        We Will Be Most Honored For Your Comment
+      </h1>
+      <div className="flex gap-25 items-center pt-10">
         <div className="flex-1 h-[500px] relative ">
           <Image
             src="/alex-kotliarskyi-QBpZGqEMsKg-unsplash.jpg"
@@ -35,8 +37,8 @@ const Contact = (): JSX.Element => {
             rows={10}
             placeholder="Please write your message here.I will response as soon as possible"
           />
-          <div className="max-w-[150px] border border-white ml-[45%] bg-lime-600 rounded-full min-h-10 text-center">
-            <Button text="Send" url="#" />
+          <div className=" text-center">
+            <Button text="Send" url="#" absolute={true} />
           </div>
         </form>
       </div>

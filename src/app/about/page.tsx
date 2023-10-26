@@ -48,8 +48,8 @@ const About = (): JSX.Element => {
               neque viverra. A arcu cursus vitae congue. Id cursus metus aliquam
               eleifend mi. Vulputate mi sit amet mauris commodo quis imperdiet.
             </p>
-            <div className="max-w-[150px] border border-white ml-[45%] bg-lime-600 rounded-full min-h-10">
-              <Button text="Contact Me" url="/contact" />
+            <div className="">
+              <Button text="Contact Me" url="/contact" absolute={true} />
             </div>
           </div>
         </div>

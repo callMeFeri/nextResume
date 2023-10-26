@@ -24,8 +24,8 @@ const Home: NextPage = () => {
             <br />I trully hope you deeply enjoy it!
           </p>
           <div className="pl-7 pt-4">
-            <div className="w-[150px] h-8 bg-lime-900 items-center text-center pt-1 border rounded-full animate-scale">
-              <Button text="See My Work" url="/portfolio" />
+            <div className=" items-center text-left  rounded-full animate-scale">
+              <Button text="See My Work" url="/portfolio" absolute={true} />
             </div>
           </div>
         </div>

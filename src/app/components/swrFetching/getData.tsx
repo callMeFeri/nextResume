@@ -62,7 +62,7 @@ function GetData({ url }: { url: string }) {
                     <h1 className="text-2xl">{item.title}</h1>
                     <br />
                     <div className="pb-5">
-                      <Button text="Click Me" url="/" />
+                      <Button text="Click Me" url="/" absolute={false} />
                     </div>
                   </div>
                   <div className="min-h-10 w-auto"></div>
