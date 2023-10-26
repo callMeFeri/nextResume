@@ -33,7 +33,7 @@ function GetData({ url }: { url: string }) {
           }) => (
             <div key={item.id}>
               <div className="flex flex-col items-center justify-center ">
-                <div className="flex flex-col border rounded-lg w-[80%] items-center bg-gradient-to-br from-black to-gray-300">
+                <div className="flex flex-col border rounded-lg w-[80%] items-center ">
                   <div className=" rounded-lg p-5">
                     <Image
                       src="/farzad-p-xSl33Wxyc-unsplash.jpg"
