@@ -2,7 +2,7 @@
 
 import { createContext, useState, useContext } from "react";
 
-export const ThemeContext = createContext<unknown>();
+export const ThemeContext = createContext();
 export const ThemeProvider = ({ children }: { children: JSX.Element }) => {
   const [mode, setMode] = useState("dark");
   const toggle = () => {
