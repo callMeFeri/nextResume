@@ -3,7 +3,7 @@ const nextConfig = {
     domains: [
       "jsonplaceholder.typicode.com",
       "via.placeholder.com",
-      "tecdn.b-cdn.net",
+      "www.w3.org",
     ],
   },
 };

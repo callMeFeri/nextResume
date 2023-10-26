@@ -5,17 +5,20 @@ import useSWR from "swr";
 import Image from "next/image";
 
 import { Button } from "../button/Button";
+import { useGlobalContext } from "@/app/context/themeContext";
 
 const fetcher = (args: string) => fetch(args).then((res) => res.json());
 
 function GetData({ url }: { url: string }) {
+  const { mode }: any = useGlobalContext();
+
   const { data, error, isLoading } = useSWR(url, fetcher, {
     revalidateOnFocus: false,
     revalidateOnReconnect: false,
   });
 
-  if (error) return <div>failed to load</div>;
-  if (isLoading) return <div>loading...</div>;
+  if (error) return <div className="pt-20">failed to load</div>;
+  if (isLoading) return <div className="pt-20">loading...</div>;
   return (
     <div className="text-center pt-20 pb-10 ">
       <h1 className="text-7xl bg-gradient-to-b from-green-800 to-blue-300 bg-clip-text text-transparent">
@@ -33,7 +36,11 @@ function GetData({ url }: { url: string }) {
           }) => (
             <div key={item.id}>
               <div className="flex flex-col items-center justify-center ">
-                <div className="flex flex-col border rounded-lg w-[80%] items-center ">
+                <div
+                  className={`flex flex-col border ${
+                    mode === "light" && "border-black bg-black-600"
+                  }rounded-lg w-[80%] items-center`}
+                >
                   <div className=" rounded-lg p-5">
                     <Image
                       src="/farzad-p-xSl33Wxyc-unsplash.jpg"

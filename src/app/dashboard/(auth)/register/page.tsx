@@ -211,14 +211,15 @@ function Register() {
           </section>
         )}
         <div className="pl-[47%] w-30">
-          {/* <button
-            disabled={isSubmitting}
-            type="submit"
-            className="text-white bg-blue-700 float-center hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-20 sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          >
-            Submit
-          </button> */}
-          <Button absolute={true} text="Register" url="/" />
+          <>
+            <div className="group relative inline-block focus:outline-none focus:ring">
+              <span className="absolute inset-0 translate-x-1.5 translate-y-1.5 bg-yellow-300 transition-transform group-hover:translate-y-0 group-hover:translate-x-0"></span>
+
+              <span className=" absolute relative text-black inline-block border-2 border-current px-8 py-3 text-sm font-bold uppercase tracking-widest group-active:text-opacity-75">
+                <button type="submit"> REGISTER</button>
+              </span>
+            </div>
+          </>
         </div>
       </form>
     </div>
