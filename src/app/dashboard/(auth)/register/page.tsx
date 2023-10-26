@@ -201,7 +201,7 @@ function Register() {
 
               <a
                 className="mt-8 inline-block w-full rounded-full bg-pink-600 py-4 text-sm font-bold text-white shadow-xl"
-                href=""
+                href="#"
                 onClick={() => setShowTerms(!showTerms)}
               >
                 I Am Agree With Terms

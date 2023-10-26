@@ -33,23 +33,35 @@ function GetData({ url }: { url: string }) {
           }) => (
             <div key={item.id}>
               <div className="flex flex-col items-center justify-center ">
-                <div className="flex flex-col border rounded-lg max-w-[500px] bg-gradient-to-br from-black to-gray-300">
+                <div className="flex flex-col border rounded-lg w-[80%] items-center bg-gradient-to-br from-black to-gray-300">
                   <div className=" rounded-lg p-5">
                     <Image
                       src="/farzad-p-xSl33Wxyc-unsplash.jpg"
-                      width={500}
-                      height={250}
+                      width={700}
+                      height={200}
                       alt={item.title}
                     />
                   </div>
-                  <div className="float-left mt-5 text-center items-left p-4">
-                    <h1 className="text-2xl">{item.title}</h1>
-                    <h1 className="text-2xl">{item.title}</h1>
-                    <h1 className="text-2xl">{item.title}</h1>
+                  <div className="float-left mt-5 text-center items-lef">
+                    <h1 className="text-2xl">
+                      {item.title}
+                      {item.title}
+                      {item.title}
+                    </h1>
+                    <h1 className="text-2xl">
+                      {item.title}
+                      {item.title}
+                      {item.title}
+                      {item.title}
+                    </h1>
+                    <h1 className="text-2xl">
+                      {item.title}
+                      {item.title}
+                    </h1>
                     <h1 className="text-2xl">{item.title}</h1>
                     <h1 className="text-2xl">{item.title}</h1>
                     <br />
-                    <div className="max-w-[150px] border border-white ml-[35%] bg-blue-600 rounded-full min-h-30 items-center">
+                    <div className="pb-5">
                       <Button text="Click Me" url="/" />
                     </div>
                   </div>
