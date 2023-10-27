@@ -5,7 +5,6 @@ import { signUpSchema, DataForm } from "@/schema/schema";
 
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Button from "@/app/components/button/Button";
 
 function Register() {
   const [showTerms, setShowTerms] = useState(false);
@@ -19,17 +18,16 @@ function Register() {
     resolver: zodResolver(signUpSchema),
   });
 
-  const onSubmit: SubmitHandler<DataForm> = async (data) => {
+  const onSubmit: SubmitHandler<DataForm> = async (formData) => {
     const response = await fetch("/api/signup", {
       method: "post",
-      body: JSON.stringify(data),
+      body: JSON.stringify(formData),
       headers: {
         "content-type": "application/json",
       },
     });
 
     if (!response.ok) {
-      alert("error");
       return;
     }
     const responseData = await response.json();
