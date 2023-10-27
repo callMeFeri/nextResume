@@ -36,8 +36,8 @@ function Navbar() {
     },
     {
       id: 7,
-      title: "Blog",
-      url: "/blog",
+      title: "Explore",
+      url: "/explore",
     },
   ];
   return (

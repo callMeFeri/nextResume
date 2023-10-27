@@ -4,7 +4,6 @@ import React from "react";
 import useSWR from "swr";
 import Image from "next/image";
 
-import { Button } from "../button/Button";
 import { useGlobalContext } from "@/app/context/themeContext";
 
 const fetcher = (args: string) => fetch(args).then((res) => res.json());
@@ -26,7 +25,7 @@ function GetData({ url }: { url: string }) {
             fill="none"
             className="w-6 h-6 animate-spin"
             viewBox="0 0 32 32"
-            xmlns="http://www.w3.org/2000/svg"
+            xmlns="https://via.placeholder.com/600/771796"
           >
             <path
               clip-rule="evenodd"
@@ -55,49 +54,58 @@ function GetData({ url }: { url: string }) {
             url: string;
             thumbnailUrl: string;
           }) => (
-            <div key={item.id}>
-              <div className="flex flex-col items-center justify-center ">
+            <>
+              <div className="w-full lg:flex text-center pl-[5%] rounded">
+                <Image
+                  className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
+                  alt="Woman holding a mug"
+                  height={1000}
+                  width={1000}
+                  src="/human.webp"
+                />
                 <div
-                  className={`flex flex-col border ${
-                    mode === "light" && "border-black bg-black-600"
-                  }rounded-lg w-[80%] items-center`}
+                  className={`border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 ${
+                    mode === "dark" ? "bg-white" : "bg-black"
+                  } rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal`}
                 >
-                  <div className=" rounded-lg p-5">
-                    <Image
-                      src="/farzad-p-xSl33Wxyc-unsplash.jpg"
-                      width={700}
-                      height={200}
-                      alt={item.title}
-                    />
+                  <div className="mb-8">
+                    <p className="text-sm text-gray-600 flex items-center">
+                      <svg
+                        className="fill-current text-gray-500 w-3 h-3 mr-2"
+                        xmlns=""
+                        viewBox="0 0 20 20"
+                      >
+                        <path d="M4 8V6a6 6 0 1 1 12 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2h1zm5 6.73V17h2v-2.27a2 2 0 1 0-2 0zM7 6v2h6V6a3 3 0 0 0-6 0z" />
+                      </svg>
+                      Members only
+                    </p>
+                    <div className="text-gray-900 font-bold text-xl mb-2">
+                      {item.title}
+                    </div>
+                    <p className="text-gray-700 text-base">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                      Voluptatibus quia, nulla! Maiores et perferendis eaque,
+                      exercitationem praesentium nihil.
+                    </p>
                   </div>
-                  <div className="float-left mt-5 text-center items-lef">
-                    <h1 className="text-2xl">
-                      {item.title}
-                      {item.title}
-                      {item.title}
-                    </h1>
-                    <h1 className="text-2xl">
-                      {item.title}
-                      {item.title}
-                      {item.title}
-                      {item.title}
-                    </h1>
-                    <h1 className="text-2xl">
-                      {item.title}
-                      {item.title}
-                    </h1>
-                    <h1 className="text-2xl">{item.title}</h1>
-                    <h1 className="text-2xl">{item.title}</h1>
-                    <br />
-                    <div className="pb-5">
-                      <Button text="Click Me" url="/" absolute={false} />
+                  <div className="flex items-center">
+                    <Image
+                      className="w-10 h-10 rounded-full mr-4"
+                      src={item.url}
+                      alt="Avatar of Jonathan Reinink"
+                      width={100}
+                      height={100}
+                    />
+                    <div className="text-sm">
+                      <p className="text-gray-900 leading-none">
+                        Jonathan Reinink
+                      </p>
+                      <p className="text-gray-600">Aug 18</p>
                     </div>
                   </div>
-                  <div className="min-h-10 w-auto"></div>
                 </div>
               </div>
-              <br />
-            </div>
+            </>
           )
         )}
     </div>
