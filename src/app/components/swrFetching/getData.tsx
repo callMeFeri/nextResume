@@ -20,7 +20,7 @@ function GetData({ url }: { url: string }) {
   if (error) return <div className="pt-20">failed to load</div>;
   if (isLoading)
     return (
-      <div className="flex items-center justify-center w-full h-full pt-20 pb-50">
+      <div className="flex items-center justify-center w-full h-[1000px]">
         <div className="flex justify-center items-center space-x-1 text-sm text-gray-700">
           <svg
             fill="none"

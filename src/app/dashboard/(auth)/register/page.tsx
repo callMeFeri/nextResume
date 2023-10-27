@@ -7,7 +7,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 function Register() {
-  const [showTerms, setShowTerms] = useState(false);
+  const [showTerms, setShowTerms] = useState<boolean>(false);
 
   const {
     register,
