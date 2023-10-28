@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 
 import useSWR from "swr";
 import Image from "next/image";
@@ -16,7 +16,16 @@ function GetData({ url }: { url: string }) {
     revalidateOnReconnect: false,
   });
 
-  if (error) return <div className="pt-20">failed to load</div>;
+  if (error)
+    return (
+      <div className="pt-20 text-center h-[900px]">
+        Failed to load the data
+        <br />
+        Check your internet connection
+        <br />
+        Please try in few moments
+      </div>
+    );
   if (isLoading)
     return (
       <div className="flex items-center justify-center w-full h-[1000px]">
@@ -55,23 +64,23 @@ function GetData({ url }: { url: string }) {
             thumbnailUrl: string;
           }) => (
             <>
-              <div className="w-full lg:flex text-center pl-[5%] rounded">
+              <div className="w-full lg:flex text-center pl-[5%] rounded ">
                 <Image
                   className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
                   alt="Woman holding a mug"
                   height={1000}
                   width={1000}
-                  src="/human.webp"
+                  src={item.url}
                 />
                 <div
-                  className={`border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 ${
-                    mode === "dark" ? "bg-white" : "bg-black"
+                  className={`border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 gap-2${
+                    mode === "dark" ? "bg-slate-100 text-white" : "bg-black"
                   } rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal`}
                 >
                   <div className="mb-8">
                     <p className="text-sm text-gray-600 flex items-center">
                       <svg
-                        className="fill-current text-gray-500 w-3 h-3 mr-2"
+                        className="fill-current  w-3 h-3 mr-2"
                         xmlns=""
                         viewBox="0 0 20 20"
                       >
@@ -79,10 +88,10 @@ function GetData({ url }: { url: string }) {
                       </svg>
                       Members only
                     </p>
-                    <div className="text-gray-900 font-bold text-xl mb-2">
-                      {item.title}
+                    <div className=" font-bold text-xl mb-2">
+                      {item.title}...
                     </div>
-                    <p className="text-gray-700 text-base">
+                    <p className=" text-base">
                       Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                       Voluptatibus quia, nulla! Maiores et perferendis eaque,
                       exercitationem praesentium nihil.
@@ -97,10 +106,18 @@ function GetData({ url }: { url: string }) {
                       height={100}
                     />
                     <div className="text-sm">
-                      <p className="text-gray-900 leading-none">
-                        Jonathan Reinink
-                      </p>
-                      <p className="text-gray-600">Aug 18</p>
+                      <p className=" leading-none">Users name</p>
+                      <p className="">Date</p>
+                    </div>
+                    <div className="pl-[90%] top-[80%]">
+                      <button className="flex items-center justify-center w-5 h-5 bg-red-500 rounded-full">
+                        <svg
+                          className="w-2 h-2 text-white fill-current"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M10 17.67l-1.902-1.72C3.144 12.42 0 9.156 0 5.5 0 2.42 2.42 0 5.5 0 7.02 0 8.457.736 10 .736c1.543 0 2.98-.736 4.5-.736C17.58 0 20 2.42 20 5.5c0 3.656-3.144 6.92-8.098 10.45L10 17.67z"></path>
+                        </svg>
+                      </button>
                     </div>
                   </div>
                 </div>

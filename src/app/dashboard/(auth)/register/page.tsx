@@ -19,14 +19,23 @@ function Register() {
   });
 
   const onSubmit: SubmitHandler<DataForm> = async (formData) => {
-    const response = await fetch("/api/signup", {
+    const { confirmPassword, ...userData } = formData;
+    const newMemberData = {
+      data: {
+        username: userData.username,
+        firstname: userData.firstName,
+        lastname: userData.lastName,
+        email: userData.email,
+        password: userData.password,
+      },
+    };
+    const response = await fetch("http://localhost:1337/api/users-data", {
       method: "post",
-      body: JSON.stringify(formData),
+      body: JSON.stringify(newMemberData),
       headers: {
-        "content-type": "application/json",
+        "Content-type": "application/json",
       },
     });
-
     if (!response.ok) {
       return;
     }
@@ -64,7 +73,14 @@ function Register() {
           message: errors.lastName,
         });
       }
+      if (errors.username) {
+        setError("username", {
+          type: "server",
+          message: errors.username,
+        });
+      }
     }
+    console.log("hello");
   };
 
   return (
@@ -120,6 +136,19 @@ function Register() {
             id="email"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="peterparker@company.com"
+            required
+          />
+        </div>
+        <div className="mb-6 pl-5 pr-5">
+          <label htmlFor="username" className="block mb-2 text-sm font-medium ">
+            Username
+          </label>
+          <input
+            {...register("username")}
+            type="text"
+            id="username"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="peterparker2000"
             required
           />
         </div>
@@ -210,16 +239,16 @@ function Register() {
         )}
         <div className="pl-[47%] w-30">
           <>
-            <div className="group relative inline-block focus:outline-none focus:ring">
-              <span className="absolute inset-0 translate-x-1.5 translate-y-1.5 bg-yellow-300 transition-transform group-hover:translate-y-0 group-hover:translate-x-0"></span>
-
-              <span className=" absolute relative text-black inline-block border-2 border-current px-8 py-3 text-sm font-bold uppercase tracking-widest group-active:text-opacity-75">
-                <button type="submit" disabled={isSubmitting}>
-                  {" "}
-                  REGISTER
-                </button>
+            <a
+              href="#_"
+              onClick={handleSubmit(onSubmit)}
+              className="relative inline-flex items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-white rounded hover:bg-white group"
+            >
+              <span className="w-48 h-48 rounded rotate-[-40deg] bg-purple-600 absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
+              <span className="relative w-full text-left text-black transition-colors duration-300 ease-in-out group-hover:text-white">
+                {isSubmitting ? "Submiting..." : "REGISTER"}
               </span>
-            </div>
+            </a>
           </>
         </div>
       </form>
