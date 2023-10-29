@@ -6,43 +6,7 @@ import DarkModeToggle from "../darkModeToggle/darkModeToggle";
 import CheckAuth from "../checkAuth/checkAuth";
 
 function Navbar() {
-  const links = [
-    {
-      id: 1,
-      title: "Home",
-      url: "/",
-    },
-    {
-      id: 2,
-      title: "Portfolio",
-      url: "/portfolio",
-    },
-    {
-      id: 3,
-      title: "Login",
-      url: "/dashboard/login",
-    },
-    {
-      id: 4,
-      title: "Register",
-      url: "/dashboard/register",
-    },
-    {
-      id: 5,
-      title: "About",
-      url: "/about",
-    },
-    {
-      id: 6,
-      title: "Contact",
-      url: "/contact",
-    },
-    {
-      id: 7,
-      title: "Explore",
-      url: "/explore",
-    },
-  ];
+  const links = CheckAuth();
   return (
     <div className="fixed top-0 w-full">
       <nav className="bg-gray-800">
@@ -66,7 +30,6 @@ function Navbar() {
                       );
                     }
                   )}
-                  <CheckAuth />
                   <DarkModeToggle />
                 </ul>
               </div>
