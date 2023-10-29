@@ -1,9 +1,14 @@
 "use client";
-import React from "react";
+import React, { ReactNode } from "react";
 
 import Image from "next/image";
+import { useGlobalContext } from "@/app/context/themeContext";
 
 function LogIn() {
+  const {
+    authenticated,
+    setAuthenticated,
+  }: { authenticated: any; setAuthenticated: any } = useGlobalContext();
   const fetchDB = async (e: {
     target: {
       email: { value: string };
@@ -21,7 +26,8 @@ function LogIn() {
           (member.attributes.email === email,
           member.attributes.password === password)
         ) {
-          console.log("logged in");
+          setAuthenticated(true);
+          console.log(authenticated);
         }
         console.log("plz enter the site first");
       }

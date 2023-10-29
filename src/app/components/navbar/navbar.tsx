@@ -1,6 +1,9 @@
+"use client";
 import Link from "next/link";
 import React from "react";
+
 import DarkModeToggle from "../darkModeToggle/darkModeToggle";
+import CheckAuth from "../checkAuth/checkAuth";
 
 function Navbar() {
   const links = [
@@ -63,6 +66,7 @@ function Navbar() {
                       );
                     }
                   )}
+                  <CheckAuth />
                   <DarkModeToggle />
                 </ul>
               </div>
