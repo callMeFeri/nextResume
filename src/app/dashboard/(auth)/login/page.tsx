@@ -1,10 +1,33 @@
+"use client";
 import React from "react";
 
 import Image from "next/image";
 
-import handleLogIn from "@/app/components/actions/logIn";
-
 function LogIn() {
+  const fetchDB = async (e: {
+    target: {
+      email: { value: string };
+      password: { value: string };
+    };
+  }) => {
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+
+    const response = await fetch("http://localhost:1337/api/users-data");
+    const responseData = await response.json();
+    responseData.data.map(
+      (member: { attributes: { email: string; password: string } }) => {
+        if (
+          (member.attributes.email === email,
+          member.attributes.password === password)
+        ) {
+          console.log("logged in");
+        }
+        console.log("plz enter the site first");
+      }
+    );
+  };
+
   return (
     <div className="min-h-screen  flex justify-center">
       <div className="max-w-screen-xl m-0 sm:m-10 bg-grey shadow sm:rounded-lg flex justify-center flex-1">
@@ -66,7 +89,7 @@ function LogIn() {
               </div>
 
               <div className="mx-auto max-w-xs">
-                <form>
+                <form onSubmit={(e) => (e.preventDefault(), fetchDB(e))}>
                   <input
                     className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
                     type="email"
@@ -97,7 +120,7 @@ function LogIn() {
                       <circle cx="8.5" cy="7" r="4" />
                       <path d="M20 8v6M23 11h-6" />
                     </svg>
-                    <span className="ml-3">Sign In</span>
+                    <button className="ml-3">Sign In</button>
                   </button>
                 </form>
               </div>
