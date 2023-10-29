@@ -1,16 +1,8 @@
 import { z, ZodType } from "zod";
-export type DataForm = {
-  firstName: string;
-  lastName: string;
-  username: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-};
-export const signUpSchema: ZodType<DataForm> = z
+export const signUpSchema = z
   .object({
-    firstName: z.string().min(3).max(20),
-    lastName: z.string().min(3).max(20),
+    firstname: z.string().min(3).max(20),
+    lastname: z.string().min(3).max(20),
     email: z.string().email(),
     password: z.string().min(6).max(15),
     confirmPassword: z.string().min(6).max(15),
@@ -20,5 +12,4 @@ export const signUpSchema: ZodType<DataForm> = z
     message: "Passwords do not match",
     path: ["confirmPassword"],
   });
-
 export type TSignUpSchema = z.infer<typeof signUpSchema>;
