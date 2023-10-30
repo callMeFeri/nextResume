@@ -1,16 +1,13 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Image from "next/image";
-import { useGlobalContext } from "@/app/context/themeContext";
+import { useGlobalContext } from "@/app/context/AppContext";
 
 function LogIn() {
-  const {
-    authenticated,
-    setAuthenticated,
-  }: { authenticated: any; setAuthenticated: any } = useGlobalContext();
+  const { authenticated, setAuthenticated }: unknown = useGlobalContext();
   const [showLogStatus, setShowLogStatus] = React.useState<boolean>(false);
-  const fetchDB = async (e: {
+  const FetchDB = async (e: {
     target: {
       email: { value: string };
       password: { value: string };
@@ -29,8 +26,10 @@ function LogIn() {
         ) {
           setAuthenticated(true);
           setShowLogStatus(true);
-          console.log(authenticated);
 
+          console.log(authenticated);
+          localStorage.setItem("auth", JSON.stringify(authenticated));
+          localStorage.getItem("currentUserInfo", member.attributes.email);
           return;
         }
         console.log("plz enter the site first");
@@ -99,7 +98,7 @@ function LogIn() {
               </div>
 
               <div className="mx-auto max-w-xs">
-                <form onSubmit={(e) => (e.preventDefault(), fetchDB(e))}>
+                <form onSubmit={(e) => (e.preventDefault(), FetchDB(e))}>
                   <input
                     className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
                     type="email"

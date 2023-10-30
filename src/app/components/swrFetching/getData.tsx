@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import useSWR from "swr";
 import Image from "next/image";
 
-import { useGlobalContext } from "@/app/context/themeContext";
+import { useGlobalContext } from "@/app/context/AppContext";
 
 const fetcher = (args: string) => fetch(args).then((res) => res.json());
 

@@ -3,11 +3,9 @@ import React, { useState, useEffect } from "react";
 
 import { signUpSchema, TSignUpSchema } from "@/schema/schema";
 
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-
-const a = function () {};
 
 export default function Register() {
   const router = useRouter();

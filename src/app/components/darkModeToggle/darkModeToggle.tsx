@@ -1,5 +1,5 @@
 "use client";
-import { useGlobalContext } from "@/app/context/themeContext";
+import { useGlobalContext } from "@/app/context/AppContext";
 import React from "react";
 
 function DarkModeToggle() {

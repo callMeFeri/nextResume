@@ -2,7 +2,7 @@
 import Image from "next/image";
 
 import Button from "../components/button/Button";
-import { useGlobalContext } from "../context/themeContext";
+import { useGlobalContext } from "../context/AppContext";
 const Contact = (): JSX.Element => {
   const { mode }: any = useGlobalContext();
   return (

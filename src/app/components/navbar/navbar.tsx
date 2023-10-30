@@ -3,6 +3,7 @@ import Link from "next/link";
 import React from "react";
 
 import DarkModeToggle from "../darkModeToggle/darkModeToggle";
+import AddPostExitButton from "../addPostButton/addPostExitButton";
 import CheckAuth from "../checkAuth/checkAuth";
 
 function Navbar() {
@@ -30,6 +31,7 @@ function Navbar() {
                       );
                     }
                   )}
+                  <AddPostExitButton />
                   <DarkModeToggle />
                 </ul>
               </div>
