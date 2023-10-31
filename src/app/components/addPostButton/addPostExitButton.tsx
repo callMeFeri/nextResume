@@ -3,7 +3,7 @@ import { useGlobalContext } from "@/app/context/AppContext";
 import React from "react";
 
 function AddPostExitButton() {
-  const { authenticated, setAuthenticated } = useGlobalContext();
+  const { authenticated, setAuthenticated }: any = useGlobalContext();
 
   if (authenticated) {
     return (

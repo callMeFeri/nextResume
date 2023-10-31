@@ -1,5 +1,6 @@
 import React from "react";
 import AddPostFunction from "./addPostFunction";
+
 function AddPost() {
   const currentUserInfo = localStorage.getItem("currentUserInfo");
   return (
@@ -7,9 +8,7 @@ function AddPost() {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-
           AddPostFunction(e);
-          console.log("posted");
         }}
       >
         <div className=" mx-auto w-10/12 flex flex-col text-gray-800 border border-gray-300 p-4 shadow-lg max-w-2xl">

@@ -1,6 +1,7 @@
 import React from "react";
+import AddPostToast from "./addPostToast";
 
-const AddPostFunction = async (e: FormData) => {
+const AddPostFunction = async (e: React.FormEvent<HTMLFormElement> | any) => {
   //grabbing username
   const currentUserId = localStorage.getItem("currentUserInfo");
   //grabbing infos
@@ -21,9 +22,8 @@ const AddPostFunction = async (e: FormData) => {
   if (response.ok) {
     const responseData = await response.json();
     console.log("succ");
-    return;
+    AddPostToast(true);
   }
-  console.log(response);
   return <div></div>;
 };
 

@@ -4,7 +4,7 @@ import GetData from "../components/swrFetching/getData";
 const Blog = () => {
   return (
     <div className="">
-      <GetData url="https://jsonplaceholder.typicode.com/photos" />
+      <GetData url="http://localhost:1337/api/users-data" />
     </div>
   );
 };

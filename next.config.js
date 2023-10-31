@@ -4,6 +4,7 @@ const nextConfig = {
       "jsonplaceholder.typicode.com",
       "via.placeholder.com",
       "www.w3.org",
+      "images.unsplash.com",
     ],
   },
 };

@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 import { createContext, useState, useContext } from "react";
 
-export const AppContext = createContext();
+export const AppContext = createContext({});
 export const AppProvider = ({ children }: { children: JSX.Element }) => {
   const authLogInfo: string | null = localStorage.getItem("auth");
   const [mode, setMode] = useState("dark");
@@ -17,7 +17,12 @@ export const AppProvider = ({ children }: { children: JSX.Element }) => {
   };
   return (
     <AppContext.Provider
-      value={{ toggle, mode, setAuthenticated, authenticated }}
+      value={{
+        toggle,
+        mode,
+        setAuthenticated,
+        authenticated,
+      }}
     >
       <div className={`theme ${mode}`}>{children}</div>
     </AppContext.Provider>
