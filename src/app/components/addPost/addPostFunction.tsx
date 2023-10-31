@@ -6,11 +6,17 @@ const AddPostFunction = async (e: React.FormEvent<HTMLFormElement> | any) => {
   const currentUserId = localStorage.getItem("currentUserInfo");
   //grabbing infos
   const url = `http://localhost:1337/api/users-data/${currentUserId}`;
+  //merging new post and old one
+  const prevData = await fetch(url);
+  const prevDataResponse = await prevData.json();
+  const prevPost = JSON.parse(prevDataResponse.data.attributes.posts);
   const postArr = JSON.stringify([
     { title: e.target.title.value, textmemory: e.target.textmemory.value },
   ]);
-
-  const dataPost = { data: { posts: postArr } };
+  const mergedPosts = prevPost.concat(JSON.parse(postArr));
+  const mergedPostsString = JSON.stringify(mergedPosts);
+  // const prevPostsContent=prevDataResponse.attributes
+  const dataPost = { data: { posts: mergedPostsString } };
   //fetching part
   const newPost = {
     method: "PUT",
