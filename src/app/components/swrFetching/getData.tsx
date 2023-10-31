@@ -74,24 +74,39 @@ function GetData({ url }: { url: string }) {
                 className="border border-[1px] rounded w-[300px] h-[300px] relative"
                 key={i}
               >
-                <span className="absolute right-[10px] text-3xl text-black">
-                  {item.attributes.username}
-                </span>
-
-                <Image
-                  src="/image-from-rawpixel-id-5926183-jpeg.jpg"
-                  width={500}
-                  height={10}
-                  alt="Ill"
-                  className="h-full hover:grayscale"
-                />
                 {JSON.parse(item.attributes.posts).map(
                   (post: { title: string; textmemory: string }, i: number) => (
                     <>
-                      <h1 key={i} className="text-2xl">
-                        {post.title}
-                      </h1>
-                      <p className=" text-base">{post.textmemory}</p>
+                      <div
+                        className={`max-w-sm rounded overflow-hidden shadow-lg ${
+                          mode === "dark" ? "bg-white" : "bg-black"
+                        }`}
+                      >
+                        <Image
+                          className="w-full"
+                          src="/135042-sky-mountain-range-mountainous-landforms-sunset-nature-1920x1080.jpg"
+                          width={1000}
+                          height={1000}
+                          alt="Sunset in the mountains"
+                        />
+                        <div className="px-6 py-4">
+                          <div
+                            className={`font-bold text-xl mb-2 ${
+                              mode === "dark" ? "text-black" : "text-white"
+                            }`}
+                          >
+                            {post.title}
+                          </div>
+                          <p className="text-gray-700 text-base">
+                            {post.textmemory}
+                          </p>
+                        </div>
+                        <div className="px-6 pt-4 pb-2">
+                          <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                            #{item.attributes.username}
+                          </span>
+                        </div>
+                      </div>
                     </>
                   )
                 )}
