@@ -19,7 +19,10 @@ function LogIn() {
     const response = await fetch("http://localhost:1337/api/users-data");
     const responseData = await response.json();
     responseData.data.map(
-      (member: { attributes: { email: string; password: string } }) => {
+      (member: {
+        id: number;
+        attributes: { email: string; password: string; id: number };
+      }) => {
         if (
           (member.attributes.email === email,
           member.attributes.password === password)
@@ -29,7 +32,9 @@ function LogIn() {
 
           console.log(authenticated);
           localStorage.setItem("auth", JSON.stringify(authenticated));
-          localStorage.getItem("currentUserInfo", member.attributes.email);
+          localStorage.setItem("currentUserInfo", JSON.stringify(member.id));
+          console.log(localStorage.getItem("currentUserInfo"));
+
           return;
         }
         console.log("plz enter the site first");

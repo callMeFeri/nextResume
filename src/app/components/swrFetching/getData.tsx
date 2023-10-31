@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 
 import useSWR from "swr";
 import Image from "next/image";
@@ -98,13 +98,13 @@ function GetData({ url }: { url: string }) {
                     </p>
                   </div>
                   <div className="flex items-center">
-                    <Image
+                    {/* <Image
                       className="w-10 h-10 rounded-full mr-4"
                       src={item.url}
                       alt="Avatar of Jonathan Reinink"
                       width={100}
                       height={100}
-                    />
+                    /> */}
                     <div className="text-sm">
                       <p className=" leading-none">Users name</p>
                       <p className="">Date</p>

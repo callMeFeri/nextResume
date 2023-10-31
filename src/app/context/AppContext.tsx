@@ -4,7 +4,7 @@ import { createContext, useState, useContext } from "react";
 
 export const AppContext = createContext();
 export const AppProvider = ({ children }: { children: JSX.Element }) => {
-  const authLogInfo: string | null = JSON.parse(localStorage.getItem("auth"));
+  const authLogInfo: string | null = localStorage.getItem("auth");
   const [mode, setMode] = useState("dark");
   const [authenticated, setAuthenticated] = React.useState<any>(authLogInfo);
   useEffect(() => {
