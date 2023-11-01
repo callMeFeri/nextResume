@@ -1,10 +1,10 @@
 "use client";
 import React, { Attributes } from "react";
-import Link from "next/link";
 import useSWR from "swr";
 import Image from "next/image";
 
 import { useGlobalContext } from "@/app/context/AppContext";
+import ExploreDataValidator from "../validateData/exploreDataValidator";
 
 const fetcher = (args: string) => fetch(args).then((res) => res.json());
 
@@ -68,42 +68,7 @@ function GetData({ url }: { url: string }) {
               i: number
             ) => (
               <>
-                {JSON.parse(item.attributes.posts).map(
-                  (post: { title: string; textmemory: string }, i: number) => (
-                    <>
-                      {
-                        <div
-                          className={`max-w-sm rounded overflow-hidden ${
-                            mode === "dark" ? "bg-white" : "bg-black"
-                          }`}
-                        >
-                          <Image
-                            className="w-full"
-                            src="/135042-sky-mountain-range-mountainous-landforms-sunset-nature-1920x1080.jpg"
-                            width={1000}
-                            height={1000}
-                            alt="Sunset in the mountains"
-                          />
-                          <div className="px-6 ">
-                            <div
-                              className={`font-bold text-xl mb-2 ${
-                                mode === "dark" ? "text-black" : "text-white"
-                              }`}
-                            >
-                              {post.title}
-                            </div>
-                            <p className="text-inherit">{post.textmemory}</p>
-                          </div>
-                          <div className=" pt-[30%]">
-                            <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
-                              #{item.attributes.username}
-                            </span>
-                          </div>
-                        </div>
-                      }
-                    </>
-                  )
-                )}
+                <ExploreDataValidator item={item} mode={mode} />
               </>
             )
           )}
