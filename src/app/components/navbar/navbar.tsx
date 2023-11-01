@@ -11,9 +11,9 @@ function Navbar() {
   const { authenticated }: any = useGlobalContext();
   const links = CheckAuth(authenticated);
   return (
-    <div className="fixed top-0 w-full">
-      <nav className="bg-gray-800">
-        <div className="max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div className=" top-0 w-full">
+      <nav className="bg-gray-800 ">
+        <div className="max-w-7xl px-4 sm:px-6 lg:px-8 absolute">
           <div className="flex h-16 justify-between">
             <div className="flex items-center">
               <div className="hidden md:block">
