@@ -28,19 +28,19 @@ function ExploreDataValidator({
                 <>
                   {
                     <div
-                      className={`max-w-sm rounded overflow-hidden border border-[1px] ${
+                      className={`max-w-sm rounded mb-5 shadow-2xl ${
                         mode === "dark" ? "border-white" : "border-black"
                       }`}
                     >
                       {" "}
-                      <div className="absolute">
-                        <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">
+                      <div className="absolute pl-2 pt-2">
+                        <span className="inline-block bg-gradient-to-r from-blue-500-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 ">
                           #{item.attributes.username}
                         </span>
                       </div>
                       <Image
                         priority
-                        className="w-full min-h-40"
+                        className="w-full min-h-40 shadow-lg"
                         src="/135042-sky-mountain-range-mountainous-landforms-sunset-nature-1920x1080.jpg"
                         width={1000}
                         height={500}

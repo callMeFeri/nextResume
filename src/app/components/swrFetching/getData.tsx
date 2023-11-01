@@ -1,7 +1,6 @@
 "use client";
 import React, { Attributes } from "react";
 import useSWR from "swr";
-import Image from "next/image";
 
 import { useGlobalContext } from "@/app/context/AppContext";
 import ExploreDataValidator from "../validateData/exploreDataValidator";
@@ -56,17 +55,14 @@ function GetData({ url }: { url: string }) {
 
         <div className="flex gap-10">
           {data.data.map(
-            (
-              item: {
-                attributes: {
-                  username: string;
-                  posts: string;
-                  title: string;
-                  thumbnailUrl: string;
-                };
-              },
-              i: number
-            ) => (
+            (item: {
+              attributes: {
+                username: string;
+                posts: string;
+                title: string;
+                thumbnailUrl: string;
+              };
+            }) => (
               <>
                 <ExploreDataValidator item={item} mode={mode} />
               </>
