@@ -5,9 +5,11 @@ import React from "react";
 import DarkModeToggle from "../darkModeToggle/darkModeToggle";
 import AddPostExitButton from "../addPostButton/addPostExitButton";
 import CheckAuth from "../checkAuth/checkAuth";
+import { useGlobalContext } from "@/app/context/AppContext";
 
 function Navbar() {
-  const links = CheckAuth();
+  const { authenticated }: any = useGlobalContext();
+  const links = CheckAuth(authenticated);
   return (
     <div className="fixed top-0 w-full">
       <nav className="bg-gray-800">

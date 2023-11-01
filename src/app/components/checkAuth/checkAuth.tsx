@@ -1,20 +1,12 @@
-"use client";
-import { useGlobalContext } from "@/app/context/AppContext";
-
-function CheckAuth() {
-  const { authenticated } = useGlobalContext();
-  if (authenticated) {
+function CheckAuth(auth: boolean) {
+  if (auth) {
     return [
       {
         id: 1,
         title: "Home",
         url: "/",
       },
-      {
-        id: 2,
-        title: "Portfolio",
-        url: "/portfolio",
-      },
+
       {
         id: 5,
         title: "About",
@@ -43,11 +35,7 @@ function CheckAuth() {
         title: "Home",
         url: "/",
       },
-      {
-        id: 2,
-        title: "Portfolio",
-        url: "/portfolio",
-      },
+
       {
         id: 3,
         title: "Login",
