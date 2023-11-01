@@ -50,7 +50,7 @@ function GetData({ url }: { url: string }) {
   return (
     <>
       {" "}
-      <div className="container pt-20 h-screen pt-20 pl-[5%]">
+      <div className="container pt-20  pt-20 pl-[10%] pb-5">
         <br />
 
         <div className="flex gap-10">
