@@ -6,7 +6,7 @@ import { useGlobalContext } from "../context/AppContext";
 const Contact = (): JSX.Element => {
   const { mode }: any = useGlobalContext();
   return (
-    <div className="container h-screen">
+    <div className="container min-h-screen">
       <h1 className="text-6xl bg-gradient-to-b from-green-800 to-blue-300 bg-clip-text text-transparent pt-20">
         We Will Be Honored For Your Comment
       </h1>

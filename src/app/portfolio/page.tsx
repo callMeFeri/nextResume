@@ -4,7 +4,7 @@ import React from "react";
 
 const Portfolio = (): JSX.Element => {
   return (
-    <div className="container pt-20 h-screen pt-[20%] pl-[15%]">
+    <div className="container pt-20 min-h-screen pt-[20%] pl-[15%]">
       <h1 className="text-5xl ml-[27%] pb-5">Choose A Choice</h1>
       <br />
 

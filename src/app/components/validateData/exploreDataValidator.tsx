@@ -30,7 +30,7 @@ function ExploreDataValidator({ item, mode }: { item: any; mode: string }) {
         />
         <div className="px-6 pb-20">
           <div className="font-bold text-xl mb-2">{randomPost.title}</div>
-          <p className="text-inherit">{randomPost.textmemory}</p>
+          <p className="text-lg">{randomPost.textmemory}</p>
         </div>
       </div>
     );

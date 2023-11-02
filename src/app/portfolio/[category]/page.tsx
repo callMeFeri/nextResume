@@ -4,7 +4,7 @@ import React from "react";
 
 function Ctegory({ params }: { params: { category: string } }) {
   return (
-    <div className="h-screen">
+    <div className="min-h-screen">
       <h1 className="pt-[65px] text-6xl pl-10">{params.category}</h1>
       <div className="gap-3 mt-12 mb-25 ">
         <div className="flex-1 flex flex-col gap-5 justify-center">

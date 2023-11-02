@@ -20,7 +20,7 @@ function page() {
   } else {
     return (
       <div className="pt-20">
-        <div className="grid h-screen px-4 bg-grey-600 place-content-center">
+        <div className="grid min-h-screen px-4 bg-grey-600 place-content-center">
           <div className="text-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"

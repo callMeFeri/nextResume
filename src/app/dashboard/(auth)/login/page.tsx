@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useGlobalContext } from "@/app/context/AppContext";
 
 function LogIn() {
-  const { authenticated, setAuthenticated }: unknown = useGlobalContext();
+  const { authenticated, setAuthenticated }: any = useGlobalContext();
   const [showLogStatus, setShowLogStatus] = React.useState<boolean>(false);
   const FetchDB = async (e: {
     target: {
@@ -33,17 +33,13 @@ function LogIn() {
           console.log(authenticated);
           localStorage.setItem("auth", JSON.stringify(authenticated));
           localStorage.setItem("currentUserInfo", JSON.stringify(member.id));
-          console.log(localStorage.getItem("currentUserInfo"));
-
-          return;
         }
-        console.log("plz enter the site first");
       }
     );
   };
 
   return (
-    <div className="min-h-screen  flex justify-center">
+    <div className="min-min-h-screen  flex justify-center">
       <div className="max-w-screen-xl m-0 sm:m-10 bg-grey shadow sm:rounded-lg flex justify-center flex-1">
         <div className="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
           <div>
@@ -188,7 +184,7 @@ function LogIn() {
             </div>
           </div>
         </div>
-        <div className="flex-1 bg-indigo-100 text-center hidden lg:flex">
+        <div className="flex-1 bg-indigo-100 text-center hidden lg:flex right-0">
           <div className="m-12 xl:m-16 w-full bg-contain bg-center bg-no-repeat bg-[url(/lee-campbell-DtDlVpy-vvQ-unsplash.jpg)]"></div>
         </div>
       </div>

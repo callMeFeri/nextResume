@@ -29,7 +29,7 @@ const Home: NextPage = () => {
             </div>
           </div>
         </div>
-        <div className="h-screen">
+        <div className="min-h-screen">
           <Image
             src="/ben-kolde-bs2Ba7t69mM-unsplash.jpg"
             width={700}

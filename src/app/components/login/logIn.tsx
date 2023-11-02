@@ -42,7 +42,6 @@ function LogIn({ url, email }: { url: string; email: string }) {
         </div>
       </div>
     );
-  return <div></div>;
 }
 
 export default LogIn;

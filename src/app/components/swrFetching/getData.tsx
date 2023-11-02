@@ -34,7 +34,7 @@ function GetData({ url }: { url: string }) {
     );
   if (isLoading)
     return (
-      <div className="flex items-center justify-center w-screen min-h-screen">
+      <div className="flex items-center justify-center w-screen min-min-h-screen">
         <div className="flex justify-center items-center space-x-1 text-sm text-gray-700">
           <svg
             fill="none"
@@ -59,7 +59,7 @@ function GetData({ url }: { url: string }) {
   const randomData = _.shuffle(data.data).slice(0, 3);
 
   return (
-    <div className="container pt-20 pl-[15%] min-h-screen text-center">
+    <div className="container pt-20 pl-[15%] min-min-h-screen text-center">
       <br />{" "}
       <div className="float-center pb-5 pl-[40%]">
         <button
