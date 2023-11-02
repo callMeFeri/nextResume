@@ -7,7 +7,9 @@ const config: Config = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    extend: {
+    extend: {      boxShadow: {
+      'lg': '0 0px 40px -15px rgba(0, 0, 0, 0.3)',
+    },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':

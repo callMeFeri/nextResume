@@ -10,7 +10,11 @@ function ExploreDataValidator({ item, mode }: { item: any; mode: string }) {
     const randomPost = _.sample(parsedPosts);
 
     return (
-      <div className="max-w-sm rounded mb-5 shadow-lg shadow-white">
+      <div
+        className={`max-w-sm rounded mb-5 shadow-lg ${
+          mode === "dark" ? "shadow-white" : "shadow-black"
+        } `}
+      >
         <div className="absolute pl-2 pt-2">
           <span className="inline-block bg-gradient-to-r from-blue-500-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 ">
             #{item.attributes.username}
