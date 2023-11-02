@@ -29,7 +29,7 @@ export default function Register() {
     }
   }, [registerStatus, router]);
   return (
-    <div className="min-min-h-screen">
+    <div className="min-h-screen">
       <h1 className="text-7xl bg-gradient-to-b from-green-800 to-blue-300 bg-clip-text text-transparent pl-[20%] pb-1 pt-20">
         ThankYou For Trusting Us
       </h1>

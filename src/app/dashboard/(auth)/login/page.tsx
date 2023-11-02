@@ -39,7 +39,7 @@ function LogIn() {
   };
 
   return (
-    <div className="min-min-h-screen  flex justify-center">
+    <div className="min-h-screen  flex justify-center">
       <div className="max-w-screen-xl m-0 sm:m-10 bg-grey shadow sm:rounded-lg flex justify-center flex-1">
         <div className="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
           <div>
