@@ -17,10 +17,10 @@ const Home: NextPage = () => {
       <div className="flex items-center gap-25 pl-4">
         <div className="flex-1 flex-col gap-12">
           <h1 className="text-7xl bg-gradient-to-b from-green-800 to-blue-300 bg-clip-text text-transparent pl-2 pb-1">
-            Wellcome to my first next js project
+            Wellcome to my next js project
           </h1>
           <p className="pl-7 pt-4">
-            wellcome to my very first next js website.
+            wellcome to my next js website.
             <br />I trully hope you deeply enjoy it!
           </p>
           <div className="pl-7 pt-4">
