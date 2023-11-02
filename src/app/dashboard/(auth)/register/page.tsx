@@ -35,10 +35,10 @@ export default function Register() {
       <form
         className="min-h-[100%] pb-[70px]"
         onSubmit={handleSubmit(async ({ confirmPassword, ...data }) => {
-          const updatedData = {
-            ...data,
-            posts: [{}], // Add the posts field with an empty array
-          };
+          // const updatedData = {
+          //   ...data,
+          //   posts: [{}],  Add the posts field with an empty array
+          // };
           const response = await fetch("http://localhost:1337/api/users-data", {
             method: "post",
             body: JSON.stringify({ data }),
