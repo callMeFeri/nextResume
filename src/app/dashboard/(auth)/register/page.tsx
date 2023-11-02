@@ -41,7 +41,7 @@ export default function Register() {
           };
           const response = await fetch("http://localhost:1337/api/users-data", {
             method: "post",
-            body: JSON.stringify({ updatedData }),
+            body: JSON.stringify({ data }),
             headers: {
               "Content-type": "application/json",
             },

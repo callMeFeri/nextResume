@@ -10,18 +10,20 @@ const AddPostFunction = async (e: React.FormEvent<HTMLFormElement> | any) => {
   const prevData = await fetch(url);
   const prevDataResponse = await prevData.json();
   console.log("prevDataResponse", prevDataResponse);
-  let prevPost;
-
-  if (prevDataResponse.data.attributes.posts) {
-    prevPost = JSON.parse(prevDataResponse.data.attributes.posts);
-  }
   const postArr = JSON.stringify([
     { title: e.target.title.value, textmemory: e.target.textmemory.value },
   ]);
-  const mergedPosts = prevPost.concat(JSON.parse(postArr));
-  const mergedPostsString = JSON.stringify(mergedPosts);
-  // const prevPostsContent=prevDataResponse.attributes
-  const dataPost = { data: { posts: mergedPostsString } };
+  let prevPost;
+  let dataPost;
+  if (prevDataResponse.data.attributes.posts) {
+    prevPost = JSON.parse(prevDataResponse.data.attributes.posts);
+    const mergedPosts = prevPost.concat(JSON.parse(postArr));
+    const mergedPostsString = JSON.stringify(mergedPosts);
+    // const prevPostsContent=prevDataResponse.attributes
+    dataPost = { data: { posts: mergedPostsString } };
+  } else {
+    dataPost = { data: { posts: postArr } };
+  }
   //fetching part
   const newPost = {
     method: "PUT",
@@ -35,7 +37,7 @@ const AddPostFunction = async (e: React.FormEvent<HTMLFormElement> | any) => {
     console.log("succ");
     AddPostToast(true);
   }
-  return <div></div>;
+  return;
 };
 
 export default AddPostFunction;
