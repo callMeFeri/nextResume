@@ -59,9 +59,9 @@ function GetData({ url }: { url: string }) {
   const randomData = _.shuffle(data.data).slice(0, 3);
 
   return (
-    <div className="container pt-20 pl-[10%] min-h-screen text-center">
+    <div className="container pt-20 pl-[15%] min-h-screen text-center">
       <br />{" "}
-      <div className="text-center float-center pb-5">
+      <div className="float-center pb-5 pl-[40%]">
         <button
           onClick={handleRefresh}
           className="flex px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-indigo-600 rounded-lg hover:bg-indigo-500 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-80"
