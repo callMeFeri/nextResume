@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 
+import RegisterInputs from "@/app/components/registerInputs/registerInputs";
 export default function Register() {
   const router = useRouter();
 
@@ -76,22 +77,13 @@ export default function Register() {
         })}
       >
         <div className="grid gap-6 mb-6 md:grid-cols-2 pt-20  pl-5 pr-5">
-          <div>
-            <label
-              htmlFor="first_name"
-              className="block mb-2 text-sm font-medium "
-            >
-              First name
-            </label>
-            <input
-              {...register("firstname")}
-              type="text"
-              id="first_name"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Peter"
-              required
-            />
-          </div>
+          <RegisterInputs
+            lableText="First name"
+            placeHolder="Peter"
+            registerName="firstname"
+            htmlFor="firstname"
+          />
+
           <div>
             <label
               htmlFor="last_name"
@@ -102,7 +94,6 @@ export default function Register() {
             <input
               {...register("lastname")}
               type="text"
-              id="last_name"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Parker"
               required
@@ -116,7 +107,6 @@ export default function Register() {
           <input
             {...register("email")}
             type="email"
-            id="email"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="peterparker@company.com"
             required
@@ -129,7 +119,6 @@ export default function Register() {
           <input
             {...register("username")}
             type="text"
-            id="username"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="peterparker2000"
             required
@@ -142,7 +131,6 @@ export default function Register() {
           <input
             {...register("password")}
             type="password"
-            id="password"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="•••••••••"
             required
@@ -158,7 +146,6 @@ export default function Register() {
           <input
             {...register("confirmPassword")}
             type="password"
-            id="confirm_password"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="•••••••••"
             required
