@@ -10,8 +10,11 @@ const AddPostFunction = async (e: React.FormEvent<HTMLFormElement> | any) => {
   const prevData = await fetch(url);
   const prevDataResponse = await prevData.json();
   console.log("prevDataResponse", prevDataResponse);
+  let prevPost;
 
-  const prevPost = JSON.parse(prevDataResponse.data.attributes.posts);
+  if (prevDataResponse.data.attributes.posts) {
+    prevPost = JSON.parse(prevDataResponse.data.attributes.posts);
+  }
   const postArr = JSON.stringify([
     { title: e.target.title.value, textmemory: e.target.textmemory.value },
   ]);
