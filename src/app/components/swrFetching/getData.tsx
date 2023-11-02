@@ -1,9 +1,9 @@
 "use client";
-import React, { Attributes } from "react";
+import React from "react";
 import useSWR from "swr";
-
 import { useGlobalContext } from "@/app/context/AppContext";
 import ExploreDataValidator from "../validateData/exploreDataValidator";
+import _ from "lodash";
 
 const fetcher = (args: string) => fetch(args).then((res) => res.json());
 
@@ -17,23 +17,23 @@ function GetData({ url }: { url: string }) {
 
   if (error)
     return (
-      <div className="pt-20 text-center h-[900px]">
+      <div className="pt-20 text-center min-h-[900px]">
         Failed to load the data
         <br />
         Check your internet connection
         <br />
-        Please try in few moments
+        Please try again in a few moments
       </div>
     );
   if (isLoading)
     return (
-      <div className="flex items-center justify-center w-screen h-[1000px]">
+      <div className="flex items-center justify-center w-screen min-h-screen">
         <div className="flex justify-center items-center space-x-1 text-sm text-gray-700">
           <svg
             fill="none"
             className="w-6 h-6 animate-spin"
             viewBox="0 0 32 32"
-            xmlns="https://via.placeholder.com/600/771796"
+            xmlns="http://www.w3.org/2000/svg"
           >
             <path
               clip-rule="evenodd"
@@ -47,30 +47,19 @@ function GetData({ url }: { url: string }) {
         </div>
       </div>
     );
-  return (
-    <>
-      {" "}
-      <div className="container pt-20  pt-20 pl-[10%] pb-5">
-        <br />
 
-        <div className="flex gap-10">
-          {data.data.map(
-            (item: {
-              attributes: {
-                username: string;
-                posts: string;
-                title: string;
-                thumbnailUrl: string;
-              };
-            }) => (
-              <>
-                <ExploreDataValidator item={item} mode={mode} />
-              </>
-            )
-          )}
-        </div>
+  // Randomly select and slice the data to display
+  const randomData = _.shuffle(data.data).slice(0, 3);
+
+  return (
+    <div className="container pt-20 pl-[10%] pb-5 min-h-screen">
+      <br />
+      <div className="flex gap-10 ">
+        {randomData.map((item: any) => (
+          <ExploreDataValidator key={item.id} item={item} mode={mode} />
+        ))}
       </div>
-    </>
+    </div>
   );
 }
 
