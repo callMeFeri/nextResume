@@ -9,7 +9,6 @@ function GetDataFetcher(url: string) {
   const { data, error, isLoading } = useSWR(url, fetcher, {
     revalidateOnFocus: false,
     revalidateOnReconnect: false,
-    refreshInterval: 0,
   });
   return { data, error, isLoading };
 }

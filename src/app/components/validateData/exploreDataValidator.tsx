@@ -1,9 +1,11 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 
 import Image from "next/image";
 import Link from "next/link";
 
 import _, { random } from "lodash";
+import { useCollapse } from "react-collapsed";
 
 function ExploreDataValidator({
   item,
@@ -17,15 +19,18 @@ function ExploreDataValidator({
   };
   mode: string;
 }) {
+  const [isExpanded, setIsExpanded] = React.useState(false);
+  const { getCollapseProps, getToggleProps } = useCollapse({ isExpanded });
   if (item.attributes.posts) {
     const parsedPosts = JSON.parse(item.attributes.posts);
 
     // Randomly select one post
     const randomPost = _.sample(parsedPosts);
+    randomPost.readmore = false;
 
     return (
       <div
-        className={`max-w-sm rounded mb-5 shadow-lg ${
+        className={`max-w-sm rounded mb-5 h-full shadow-lg ${
           mode === "dark" ? "shadow-white" : "shadow-black"
         } `}
       >
@@ -44,32 +49,38 @@ function ExploreDataValidator({
         />
         <div className="px-6 pb-20">
           <div className="font-bold text-xl mb-2">{randomPost.title}</div>
-          <p className="text-lg line-clamp-2 box-orient-vertical overflow-hidden block">
+
+          <p
+            {...getCollapseProps()}
+            className="text-lg  whitespace-normal break-all box-orient-horizontal overflow-hidden block"
+          >
             {randomPost.textmemory}
           </p>
-          <Link href={`/explore/${randomPost.textmemory}`} className="">
-            <button
-              type="button"
-              className="bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+
+          <button
+            {...getToggleProps({
+              onClick: (e) => setIsExpanded((prevExpanded) => !prevExpanded),
+            })}
+            type="button"
+            className="bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          >
+            {isExpanded ? "Read Less" : "Read More"}
+            <svg
+              className="w-3.5 h-3.5 ml-2"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 14 10"
             >
-              See More
-              <svg
-                className="w-3.5 h-3.5 ml-2"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 14 10"
-              >
-                <path
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M1 5h12m0 0L9 1m4 4L9 9"
-                />
-              </svg>
-            </button>
-          </Link>
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M1 5h12m0 0L9 1m4 4L9 9"
+              />
+            </svg>
+          </button>
         </div>
       </div>
     );

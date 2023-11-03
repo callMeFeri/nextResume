@@ -9,12 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.4.3",
     "bcryptjs": "^2.4.3",
     "lodash": "^4.17.21",
     "next": "^14.0.2-canary.3",
     "react": "^18",
+    "react-collapsed": "^4.1.1",
     "react-dom": "^18",
     "react-hook-form": "^7.47.0",
+    "react-query": "^3.39.3",
     "swr": "^2.2.4"
   },
   "devDependencies": {

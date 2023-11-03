@@ -1,14 +1,11 @@
-"use client";
 import React, { useState } from "react";
 import { useGlobalContext } from "@/app/context/AppContext";
 import ExploreDataValidator from "../validateData/exploreDataValidator";
 import _ from "lodash";
 import GetDataFetcher from "./getDataFetcher";
 
-function GetData({ url }: { url: string }) {
+function GetData({ url, mode }: { url: string; mode: string }) {
   const [refresh, setRefresh] = React.useState<number>(0);
-
-  const { mode }: any = useGlobalContext();
 
   const { data, error, isLoading } = GetDataFetcher(url);
   const handleRefresh = () => {
