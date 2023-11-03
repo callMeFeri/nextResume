@@ -1,6 +1,8 @@
-import Button from "@/app/components/button/Button";
-import Image from "next/image";
 import React from "react";
+
+import Button from "@/app/components/button/Button";
+
+import Image from "next/image";
 
 function Ctegory({ params }: { params: { category: string } }) {
   return (
@@ -11,7 +13,7 @@ function Ctegory({ params }: { params: { category: string } }) {
           <h1 className="text-4xl ml-20">Test Text</h1>
           <p>Describtion</p>
           <div className="max-w-[150px] border border-white bg-lime-600 rounded-full min-h-10 text-center">
-            <Button text="See More" url="/" />
+            <Button text="See More" url="/" absolute={false} />
           </div>
         </div>
         <div className="flex-1 h-[400px] relative w-[400px] float-right mr-30">
