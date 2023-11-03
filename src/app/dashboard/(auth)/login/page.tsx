@@ -30,7 +30,6 @@ function LogIn() {
           setAuthenticated(true);
           setShowLogStatus(true);
 
-          console.log(authenticated);
           localStorage.setItem("auth", JSON.stringify(authenticated));
           localStorage.setItem("currentUserInfo", JSON.stringify(member.id));
         }

@@ -9,9 +9,12 @@ const AddPostFunction = async (e: React.FormEvent<HTMLFormElement> | any) => {
   //merging new post and old one
   const prevData = await fetch(url);
   const prevDataResponse = await prevData.json();
-  console.log("prevDataResponse", prevDataResponse);
   const postArr = JSON.stringify([
-    { title: e.target.title.value, textmemory: e.target.textmemory.value },
+    {
+      title: e.target.title.value,
+      textmemory: e.target.textmemory.value,
+      id: new Date().getTime().toString(),
+    },
   ]);
   let prevPost;
   let dataPost;

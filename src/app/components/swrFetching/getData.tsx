@@ -1,23 +1,16 @@
 "use client";
 import React, { useState } from "react";
-import useSWR from "swr";
 import { useGlobalContext } from "@/app/context/AppContext";
 import ExploreDataValidator from "../validateData/exploreDataValidator";
 import _ from "lodash";
-
-const fetcher = (args: string) => fetch(args).then((res) => res.json());
+import GetDataFetcher from "./getDataFetcher";
 
 function GetData({ url }: { url: string }) {
   const [refresh, setRefresh] = React.useState<number>(0);
 
   const { mode }: any = useGlobalContext();
 
-  const { data, error, isLoading } = useSWR(url, fetcher, {
-    revalidateOnFocus: false,
-    revalidateOnReconnect: false,
-    refreshInterval: 0,
-  });
-
+  const { data, error, isLoading } = GetDataFetcher(url);
   const handleRefresh = () => {
     setRefresh((prevKey) => prevKey + 1);
   };
