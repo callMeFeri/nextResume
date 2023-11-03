@@ -1,8 +1,22 @@
 import React from "react";
+
 import Image from "next/image";
+import Link from "next/link";
+
 import _ from "lodash";
 
-function ExploreDataValidator({ item, mode }: { item: any; mode: string }) {
+function ExploreDataValidator({
+  item,
+  mode,
+}: {
+  item: {
+    attributes: {
+      posts: string;
+      username: string;
+    };
+  };
+  mode: string;
+}) {
   if (item.attributes.posts) {
     const parsedPosts = JSON.parse(item.attributes.posts);
 
@@ -30,12 +44,35 @@ function ExploreDataValidator({ item, mode }: { item: any; mode: string }) {
         />
         <div className="px-6 pb-20">
           <div className="font-bold text-xl mb-2">{randomPost.title}</div>
-          <p className="text-lg">{randomPost.textmemory}</p>
+          <p className="text-lg line-clamp-2 box-orient-vertical overflow-hidden block">
+            {randomPost.textmemory}
+          </p>
+          <Link href="/" className="">
+            <button
+              type="button"
+              className="bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            >
+              See More
+              <svg
+                className="w-3.5 h-3.5 ml-2"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 14 10"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M1 5h12m0 0L9 1m4 4L9 9"
+                />
+              </svg>
+            </button>
+          </Link>
         </div>
       </div>
     );
-  } else {
-    return null;
   }
 }
 
