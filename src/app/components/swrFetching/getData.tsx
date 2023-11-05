@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { useGlobalContext } from "@/app/context/AppContext";
+
 import ExploreDataValidator from "../validateData/exploreDataValidator";
+
 import _ from "lodash";
+
 import GetDataFetcher from "./getDataFetcher";
 
 function GetData({ url, mode }: { url: string; mode: string }) {
@@ -52,9 +54,9 @@ function GetData({ url, mode }: { url: string; mode: string }) {
   let item;
   return (
     <div className="container pt-20 pl-[15%] min-h-screen text-center">
-      <br />{" "}
+      <br />
       <div className="float-center pb-5 pl-[40%]">
-        <button
+        {/* <button
           onClick={handleRefresh}
           className="flex px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-indigo-600 rounded-lg hover:bg-indigo-500 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-80"
         >
@@ -72,14 +74,14 @@ function GetData({ url, mode }: { url: string; mode: string }) {
           </svg>
 
           <span className="mx-1">New Posts</span>
-        </button>
+        </button> */}
       </div>
       <div className="flex gap-10 ">
         {/* {randomData.map((item: any) => (
           <ExploreDataValidator mode={mode} item={item} key={item.id} />
         ))} */}
         <ExploreDataValidator item={Object.values(data.data)} mode={mode} />
-      </div>{" "}
+      </div>
     </div>
   );
 }

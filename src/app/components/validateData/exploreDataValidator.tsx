@@ -1,26 +1,30 @@
-import React, { useState } from "react";
+"use client";
+import React, { useEffect, useRef, useState } from "react";
 import {
   useInfiniteQuery,
   QueryClient,
   QueryClientProvider,
 } from "react-query";
+import { useCollapse } from "react-collapsed";
+import Image from "next/image";
+import _ from "lodash";
 
 type Props = {
   mode: string;
   item: never[];
 };
 
-import { useCollapse } from "react-collapsed";
-
-import Image from "next/image";
-
 const queryClient = new QueryClient();
 
 const fetchPosts = async (page = 1, item: never[]) => {
-  const pageSize = 2; // Number of posts per page
+  const pageSize = 1; // Number of posts per page
   const startIndex = (page - 1) * pageSize;
   const endIndex = startIndex + pageSize;
-  const slicedPosts = item.slice(startIndex, endIndex);
+
+  // Shuffle the slicedPosts array using lodash shuffle
+  const shuffledPosts = _.shuffle(item);
+
+  const slicedPosts = shuffledPosts.slice(startIndex, endIndex);
 
   // Simulate an asynchronous operation
   return new Promise((resolve) => {
@@ -31,9 +35,9 @@ const fetchPosts = async (page = 1, item: never[]) => {
 };
 
 const Page = ({ mode, item }: Props) => {
-  const [isExpanded, setIsExpanded] = React.useState(false);
+  const loadMoreButtonRef = useRef<HTMLDivElement>(null);
   const [page, setPage] = useState(1);
-  const { getCollapseProps, getToggleProps } = useCollapse({ isExpanded });
+
   const {
     data,
     fetchNextPage,
@@ -50,6 +54,21 @@ const Page = ({ mode, item }: Props) => {
     }
   );
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const { current } = loadMoreButtonRef;
+      if (
+        current &&
+        current.getBoundingClientRect().bottom <= window.innerHeight
+      ) {
+        loadMore();
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   if (isLoading && page === 1) {
     return <div>Loading...</div>;
   }
@@ -58,14 +77,22 @@ const Page = ({ mode, item }: Props) => {
     return <div>Error occurred while fetching data: {isError}</div>;
   }
 
+  const loadMore = () => {
+    if (hasNextPage && !isFetchingNextPage) {
+      fetchNextPage();
+      setPage((prevPage) => prevPage + 1);
+    }
+  };
+
   return (
     <>
-      <div className="min-h-screen">
-        {item.map(
-          (post: { attributes: { posts: string; username: string } }) => (
+      <div className="min-h-screen gap-5">
+        {item
+          .flat()
+          .map((post: { attributes: { posts: string; username: string } }) => (
             <div key={post.attributes.username}>
               {post.attributes.posts && post.attributes.posts.length > 0 ? (
-                JSON.parse(post.attributes.posts).map(
+                _.shuffle(JSON.parse(post.attributes.posts)).map(
                   (items: {
                     title: string;
                     textmemory: string;
@@ -73,7 +100,7 @@ const Page = ({ mode, item }: Props) => {
                   }) => (
                     <>
                       <div
-                        className={`max-w-sm rounded mb-5 h-full shadow-lg ${
+                        className={`max-w-sm p-5 rounded mb-5 h-full shadow-lg ${
                           mode === "dark" ? "shadow-white" : "shadow-black"
                         } `}
                       >
@@ -95,38 +122,10 @@ const Page = ({ mode, item }: Props) => {
                             {items.title}
                           </div>
 
-                          <p
-                            {...getCollapseProps()}
-                            className="text-lg  whitespace-normal break-all box-orient-horizontal overflow-hidden block"
-                          >
-                            {items.textmemory}
-                          </p>
-
-                          <button
-                            {...getToggleProps({
-                              onClick: (e) =>
-                                setIsExpanded((prevExpanded) => !prevExpanded),
-                            })}
-                            type="button"
-                            className="bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                          >
-                            {isExpanded ? "Read Less" : "Read More"}
-                            <svg
-                              className="w-3.5 h-3.5 ml-2"
-                              aria-hidden="true"
-                              xmlns="http://www.w3.org/2000/svg"
-                              fill="none"
-                              viewBox="0 0 14 10"
-                            >
-                              <path
-                                stroke="currentColor"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M1 5h12m0 0L9 1m4 4L9 9"
-                              />
-                            </svg>
-                          </button>
+                          <ReadMoreButton
+                            postId={items.id}
+                            content={items.textmemory}
+                          />
                         </div>
                       </div>
                     </>
@@ -136,14 +135,39 @@ const Page = ({ mode, item }: Props) => {
                 <> </>
               )}
             </div>
-          )
-        )}
+          ))}
 
         {isFetchingNextPage && <div>Loading more...</div>}
 
-        {hasNextPage && <div ref={fetchNextPage} style={{ height: "20px" }} />}
+        {hasNextPage && (
+          <button onClick={loadMore} disabled={isFetchingNextPage}>
+            {isFetchingNextPage ? "Loading..." : "Load More"}
+          </button>
+        )}
       </div>
     </>
+  );
+};
+
+const ReadMoreButton = ({
+  postId,
+  content,
+}: {
+  postId: number;
+  content: string;
+}) => {
+  const { getCollapseProps, getToggleProps, isExpanded } = useCollapse();
+
+  return (
+    <div>
+      <div {...getCollapseProps()}>
+        {isExpanded ? content : `${content.slice(0, 100)}...`}
+      </div>
+
+      <button {...getToggleProps()}>
+        {isExpanded ? "Read Less" : "Read More"}
+      </button>
+    </div>
   );
 };
 
