@@ -9,7 +9,7 @@ function GetData({ url, mode }: { url: string; mode: string }) {
 
   const { data, error, isLoading } = GetDataFetcher(url);
   const handleRefresh = () => {
-    setRefresh((prevKey) => prevKey + 1);
+    console.log(data.data);
   };
 
   if (error)
@@ -47,7 +47,9 @@ function GetData({ url, mode }: { url: string; mode: string }) {
 
   // Randomly select and slice the data to display
   const randomData = _.shuffle(data.data).slice(0, 3);
+  console.log("data.data", data.data);
 
+  let item;
   return (
     <div className="container pt-20 pl-[15%] min-h-screen text-center">
       <br />{" "}
@@ -73,9 +75,10 @@ function GetData({ url, mode }: { url: string; mode: string }) {
         </button>
       </div>
       <div className="flex gap-10 ">
-        {randomData.map((item: any) => (
-          <ExploreDataValidator key={item.id} item={item} mode={mode} />
-        ))}
+        {/* {randomData.map((item: any) => (
+          <ExploreDataValidator mode={mode} item={item} key={item.id} />
+        ))} */}
+        <ExploreDataValidator item={Object.values(data.data)} mode={mode} />
       </div>{" "}
     </div>
   );

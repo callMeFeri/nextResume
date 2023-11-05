@@ -8,6 +8,18 @@ body {
   overflow-x:hidden;
 
 }
+.flex-wrap {
+  flex-wrap: nowrap; /* Ensure items are in a single row */
+  overflow-x: auto; /* Enable horizontal scrolling */
+  overflow-y: hidden; /* Hide vertical scrollbar */
+  white-space: nowrap; /* Prevent line breaks */
+}
+
+.max-w-sm {
+  width: 320px; /* Adjust the width of each card as needed */
+  display: inline-block; /* Display cards in a row */
+  white-space: normal; /* Allow text to wrap within each card */
+}
 .light{
   background-color: rgb(256, 256, 256);
   color:#111
