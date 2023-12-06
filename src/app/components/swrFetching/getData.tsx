@@ -7,12 +7,9 @@ import _ from "lodash";
 import GetDataFetcher from "./getDataFetcher";
 
 function GetData({ url, mode }: { url: string; mode: string }) {
-  const [refresh, setRefresh] = React.useState<number>(0);
+  // const [refresh, setRefresh] = React.useState<number>(0);
 
   const { data, error, isLoading } = GetDataFetcher(url);
-  const handleRefresh = () => {
-    console.log(data.data);
-  };
 
   if (error)
     return (
@@ -49,7 +46,6 @@ function GetData({ url, mode }: { url: string; mode: string }) {
 
   // Randomly select and slice the data to display
   const randomData = _.shuffle(data.data).slice(0, 3);
-  console.log("data.data", data.data);
 
   let item;
   return (

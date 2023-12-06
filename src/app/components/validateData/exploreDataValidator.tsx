@@ -1,22 +1,18 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
-import {
-  useInfiniteQuery,
-  QueryClient,
-  QueryClientProvider,
-} from "react-query";
+import React from "react";
+import { QueryClient, QueryClientProvider } from "react-query";
 import { useCollapse } from "react-collapsed";
-import Image from "next/image";
 import _ from "lodash";
+import { Page } from "./Page";
 
-type Props = {
+export type Props = {
   mode: string;
   item: never[];
 };
 
 const queryClient = new QueryClient();
 
-const fetchPosts = async (page = 1, item: never[]) => {
+export const fetchPosts = async (page = 1, item: never[]) => {
   const pageSize = 1; // Number of posts per page
   const startIndex = (page - 1) * pageSize;
   const endIndex = startIndex + pageSize;
@@ -34,144 +30,43 @@ const fetchPosts = async (page = 1, item: never[]) => {
   });
 };
 
-const Page = ({ mode, item }: Props) => {
-  const loadMoreButtonRef = useRef<HTMLDivElement>(null);
-  const [page, setPage] = useState(1);
-
-  const {
-    data,
-    fetchNextPage,
-    hasNextPage,
-    isFetchingNextPage,
-    isError,
-    isLoading,
-  } = useInfiniteQuery(
-    "posts",
-    ({ pageParam }) => fetchPosts(pageParam, item),
-    {
-      getNextPageParam: (lastPage: any) =>
-        lastPage.posts.length > 0 ? page + 1 : undefined,
-    }
-  );
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const { current } = loadMoreButtonRef;
-      if (
-        current &&
-        current.getBoundingClientRect().bottom <= window.innerHeight
-      ) {
-        loadMore();
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  if (isLoading && page === 1) {
-    return <div>Loading...</div>;
-  }
-
-  if (isError) {
-    return <div>Error occurred while fetching data: {isError}</div>;
-  }
-
-  const loadMore = () => {
-    if (hasNextPage && !isFetchingNextPage) {
-      fetchNextPage();
-      setPage((prevPage) => prevPage + 1);
-    }
-  };
-
-  return (
-    <>
-      <div className="min-h-screen gap-5">
-        {item
-          .flat()
-          .map((post: { attributes: { posts: string; username: string } }) => (
-            <div key={post.attributes.username}>
-              {post.attributes.posts && post.attributes.posts.length > 0 ? (
-                _.shuffle(JSON.parse(post.attributes.posts)).map(
-                  (items: {
-                    title: string;
-                    textmemory: string;
-                    id: number;
-                  }) => (
-                    <>
-                      <div
-                        className={`max-w-sm p-5 rounded mb-5 h-full shadow-lg ${
-                          mode === "dark" ? "shadow-white" : "shadow-black"
-                        } `}
-                      >
-                        <div className="absolute pl-2 pt-2">
-                          <span className="inline-block bg-gradient-to-r from-blue-500-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 ">
-                            #{post.attributes.username}
-                          </span>
-                        </div>
-                        <Image
-                          priority
-                          className="w-full h-30 object-cover"
-                          src="/135042-sky-mountain-range-mountainous-landforms-sunset-nature-1920x1080.jpg"
-                          width={1000}
-                          height={500}
-                          alt="Sunset in the mountains"
-                        />
-                        <div className="px-6 pb-20">
-                          <div className="font-bold text-xl mb-2">
-                            {items.title}
-                          </div>
-
-                          <ReadMoreButton
-                            postId={items.id}
-                            content={items.textmemory}
-                          />
-                        </div>
-                      </div>
-                    </>
-                  )
-                )
-              ) : (
-                <> </>
-              )}
-            </div>
-          ))}
-
-        {isFetchingNextPage && <div>Loading more...</div>}
-
-        {hasNextPage && (
-          <button onClick={loadMore} disabled={isFetchingNextPage}>
-            {isFetchingNextPage ? "Loading..." : "Load More"}
-          </button>
-        )}
-      </div>
-    </>
-  );
-};
-
-const ReadMoreButton = ({
+export const ReadMoreButton = ({
   postId,
   content,
 }: {
-  postId: number;
+  postId: string;
   content: string;
 }) => {
   const { getCollapseProps, getToggleProps, isExpanded } = useCollapse();
 
   return (
-    <div>
-      <div {...getCollapseProps()}>
+    <div className="relative">
+      {/* Content to be collapsed */}
+      <div {...getCollapseProps()} className="">
         {isExpanded ? content : `${content.slice(0, 100)}...`}
       </div>
-
-      <button {...getToggleProps()}>
-        {isExpanded ? "Read Less" : "Read More"}
+      <br />
+      {/* Read More button */}
+      <button
+        {...getToggleProps()}
+        className="absolute bottom-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 inline-flex items-center h-10 px-5 text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800"
+      >
+        <svg className="w-4 h-4 mr-3 fill-current" viewBox="0 0 20 20">
+          <path
+            d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
+            clipRule="evenodd"
+            fillRule="evenodd"
+          ></path>
+        </svg>
+        <span className="text-xs">
+          {isExpanded ? "Read Less" : "Read More"}
+        </span>
       </button>
     </div>
   );
 };
 
-export default function WrappedPage({ mode, item }: Props) {
+export default function ExploreDataValidator({ mode, item }: Props) {
   return (
     <QueryClientProvider client={queryClient}>
       <Page mode={mode} item={item} />

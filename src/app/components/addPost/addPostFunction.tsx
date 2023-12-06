@@ -5,15 +5,21 @@ const AddPostFunction = async (e: React.FormEvent<HTMLFormElement> | any) => {
   //grabbing username
   const currentUserId = localStorage.getItem("currentUserInfo");
   //grabbing infos
-  const url = `http://localhost:1337/api/users-data/${currentUserId}`;
+  const url = `http:/localhost:1337/api/posts`;
   //merging new post and old one
   const prevData = await fetch(url);
   const prevDataResponse = await prevData.json();
+
+  //getiing the userId
+  const userId = localStorage.getItem("currentUserInfo");
+
   const postArr = JSON.stringify([
     {
       title: e.target.title.value,
-      textmemory: e.target.textmemory.value,
-      id: new Date().getTime().toString(),
+      postsContent: e.target.textmemory.value,
+      userId: userId,
+      postId: new Date().getTime().toString(),
+      createdDate: new Date().toISOString(),
     },
   ]);
   let prevPost;

@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useGlobalContext } from "@/app/context/AppContext";
 
 function LogIn() {
-  const { authenticated, setAuthenticated }: any = useGlobalContext();
+  const { authenticated, setAuthenticated, apiUrl }: any = useGlobalContext();
   const [showLogStatus, setShowLogStatus] = React.useState<boolean>(false);
   const FetchDB = async (e: {
     target: {
@@ -16,29 +16,33 @@ function LogIn() {
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    const response = await fetch("http://localhost:1337/api/users-data");
+    const response = await fetch(apiUrl);
     const responseData = await response.json();
-    responseData.data.map(
-      (member: {
+    type memberType = {
+      id: number;
+      attributes: {
+        email: string;
+        password: string;
         id: number;
-        attributes: { email: string; password: string; id: number };
-      }) => {
-        if (
-          (member.attributes.email === email,
-          member.attributes.password === password)
-        ) {
-          setAuthenticated(true);
-          setShowLogStatus(true);
+      };
+    };
 
-          localStorage.setItem("auth", JSON.stringify(authenticated));
-          localStorage.setItem("currentUserInfo", JSON.stringify(member.id));
-        }
+    responseData.data.map((member: memberType) => {
+      if (
+        (member.attributes.email === email,
+        member.attributes.password === password)
+      ) {
+        setAuthenticated(true);
+        setShowLogStatus(true);
+
+        localStorage.setItem("auth", JSON.stringify(authenticated));
+        localStorage.setItem("currentUserInfo", JSON.stringify(member.id));
       }
-    );
+    });
   };
 
   return (
-    <div className="min-h-screen  flex justify-center">
+    <div className="min-h-screen flex justify-center">
       <div className="max-w-screen-xl m-0 sm:m-10 bg-grey shadow sm:rounded-lg flex justify-center flex-1">
         <div className="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
           <div>
