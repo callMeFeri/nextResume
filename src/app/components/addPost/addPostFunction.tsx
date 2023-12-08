@@ -13,31 +13,34 @@ const AddPostFunction = async (e: FormEvent<HTMLFormElement>) => {
   //getiing the userId
   const userId = localStorage.getItem("currentUserInfo");
 
-  const postArr = JSON.stringify([
-    {
+  const postArr = JSON.stringify({
+    data: {
       title: (e.target as HTMLFormElement).title.valueOf,
       postsContent: (e.target as HTMLFormElement).textmemory.value,
       userId: userId,
       postId: new Date().getTime().toString(),
       createdDate: new Date().toISOString(),
     },
-  ]);
+  });
+
   let prevPost;
   let dataPost;
   console.log("postArr", postArr);
-  if (prevDataResponse.data.attributes.posts) {
-    prevPost = JSON.parse(prevDataResponse.data.attributes.posts);
-    const mergedPosts = prevPost.concat(JSON.parse(postArr));
-    const mergedPostsString = JSON.stringify(mergedPosts);
-    // const prevPostsContent=prevDataResponse.attributes
-    dataPost = { data: { posts: mergedPostsString } };
-  } else {
-    dataPost = { data: { posts: postArr } };
-  }
+  // if (prevDataResponse.data.attributes?.posts) {
+  //   prevPost = JSON.parse(prevDataResponse.data.attributes.posts);
+  //   const mergedPosts = prevPost.concat(JSON.parse(postArr));
+  //   const mergedPostsString = JSON.stringify(mergedPosts);
+  //   // const prevPostsContent=prevDataResponse.attributes
+  //   dataPost = { data: { posts: mergedPostsString } };
+  // } else {
+  //   dataPost = { data: { posts: postArr } };
+  // }
+  dataPost = { data: { postArr } };
+  console.log("final data structure", dataPost);
   //fetching part
   const newPost = {
-    method: "PUT",
-    body: JSON.stringify(dataPost),
+    method: "post",
+    body: postArr,
     headers: { "Content-Type": "application/json" },
   };
   const response = await fetch(url, newPost);
