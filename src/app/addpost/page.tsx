@@ -7,13 +7,11 @@ import AddPost from "../components/addPost/addPostForm";
 import Link from "next/link";
 
 function page() {
-  const { authenticated }: { authenticated: any } = useGlobalContext();
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const { authenticated }: { authenticated?: boolean } = useGlobalContext();
   if (authenticated) {
     return (
-      <div className="pt-20 min-h-[900px] text-center ">
-        <h1 className="text-6xl  bg-gradient-to-b from-green-800 to-blue-300 bg-clip-text text-transparent pb-10">
-          Please Share Your Memory Here!
-        </h1>
+      <div>
         <AddPost />
       </div>
     );

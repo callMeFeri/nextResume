@@ -3,7 +3,7 @@ import Image from "next/image";
 import Button from "../components/button/Button";
 const About = (): JSX.Element => {
   return (
-    <div className="h-full pb-20">
+    <div className="min-h-screen pb-20">
       <div className="pt-20 items-center text-center min-h-full">
         <div className="w-[80%] relative h-[500px] left-[10%]">
           <Image
@@ -12,7 +12,7 @@ const About = (): JSX.Element => {
             src="/lee-campbell-DtDlVpy-vvQ-unsplash.jpg"
             className="grayscale"
           />
-          <div className="absolute bottom-[20px] left-[20px] pt-20 text-white">
+          <div className="absolute bottom-5 left-5 pt-20 text-white">
             <h1 className="imgTitle text-5xl">
               Thank You For Visiting My Project!
             </h1>

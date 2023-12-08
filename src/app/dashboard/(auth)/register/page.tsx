@@ -32,51 +32,6 @@ export default function Register() {
     }
   }, [registerStatus, router]);
 
-  const onSubmit = async ({
-    confirmPassword,
-    ...data
-  }: {
-    confirmPassword: string;
-    data: TSignUpSchema;
-  }) => {
-    const response = await fetch(apiUrl, {
-      method: "post",
-      body: JSON.stringify({ data }),
-      headers: {
-        "Content-type": "application/json",
-      },
-    });
-    if (!response.ok) {
-      console.log("resErr", response.ok);
-
-      return;
-    }
-
-    const responseData = await response.json();
-
-    if (responseData.errors) {
-      const errors = responseData.errors;
-      (
-        [
-          "email",
-          "password",
-          "firstname",
-          "lastname",
-          "username",
-          "userId",
-        ] as const
-      ).forEach((errorKey) => {
-        if (errors[errorKey]) {
-          setError(errorKey, {
-            type: "server",
-            message: errors[errorKey],
-          });
-        }
-      });
-    }
-    setRegisterStatus(true);
-  };
-
   return (
     <div className="min-h-screen">
       <h1 className="text-7xl bg-gradient-to-b from-green-800 to-blue-300 bg-clip-text text-transparent pl-[20%] pb-1 pt-20">
@@ -84,7 +39,44 @@ export default function Register() {
       </h1>
       <form
         className="min-h-[100%] pb-[70px]"
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit(async ({ confirmPassword, ...data }) => {
+          const response = await fetch(apiUrl, {
+            method: "post",
+            body: JSON.stringify({ data }),
+            headers: {
+              "Content-type": "application/json",
+            },
+          });
+          if (!response.ok) {
+            console.log("resErr", response.ok);
+
+            return;
+          }
+
+          const responseData = await response.json();
+
+          if (responseData.errors) {
+            const errors = responseData.errors;
+            (
+              [
+                "email",
+                "password",
+                "firstname",
+                "lastname",
+                "username",
+                "userId",
+              ] as const
+            ).forEach((errorKey) => {
+              if (errors[errorKey]) {
+                setError(errorKey, {
+                  type: "server",
+                  message: errors[errorKey],
+                });
+              }
+            });
+          }
+          setRegisterStatus(true);
+        })}
       >
         <div className="grid gap-6 mb-6 md:grid-cols-2 pt-20 pl-5 pr-5">
           <div>

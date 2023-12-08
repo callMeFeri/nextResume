@@ -11,47 +11,40 @@ function AddPost() {
           AddPostFunction(e);
         }}
       >
-        <div className=" mx-auto w-10/12 flex flex-col text-gray-800 border border-gray-300 p-4 shadow-lg max-w-2xl">
-          <input
-            className="title bg-gray-100 border border-gray-300 p-2 mb-4 outline-none"
-            placeholder="Title"
-            type="text"
-            required
-            name="title"
-          />
-          <textarea
-            className="description bg-gray-100 sec p-3 h-60 border border-gray-300 outline-none"
-            placeholder="Describe everything about this memory here"
-            required
-            name="textmemory"
-          />
-
-          <div className="icons flex text-gray-500 m-2">
-            <svg
-              className="mr-2 cursor-pointer hover:text-gray-700 border rounded-full p-1 h-7"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"
-              />
-            </svg>
-            <div className="count ml-auto text-gray-400 text-xs font-semibold">
-              0/300
-            </div>
-          </div>
-
-          <div className="buttons flex">
-            <div className="btn border border-gray-300 p-1 px-4 font-semibold cursor-pointer text-gray-500 ml-auto">
-              Cancel
-            </div>
-            <div className="btn border border-indigo-500 p-1 px-4 text-uppercase font-semibold cursor-pointer text-gray-200 ml-2 bg-indigo-500">
-              <button type="submit"> Post</button>
+        <div className="min-h-screen md:px-20 pt-20 text-center shadow">
+          <div className=" bg-white rounded-md  px-6 py-10 max-w-2xl mx-auto">
+            <h1 className="text-center text-2xl font-bold text-gray-500 mb-10">
+              ADD POST
+            </h1>
+            <div className="space-y-4">
+              <div>
+                <label htmlFor="title" className="text-lx font-serif">
+                  Title:
+                </label>
+                <input
+                  type="text"
+                  placeholder="title"
+                  id="title"
+                  className="ml-2 outline-none py-1 px-2 text-md border-2 rounded-md"
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="description"
+                  className="block mb-2 text-lg font-serif"
+                >
+                  Description:
+                </label>
+                <textarea
+                  id="description"
+                  rows={15}
+                  placeholder="whrite here.."
+                  className="w-full font-serif p-4 text-gray-600 bg-indigo-50 outline-none rounded-md"
+                />
+              </div>
+              <button className=" px-6 py-2 mx-auto block rounded-md text-lg font-semibold text-indigo-100 bg-indigo-600  ">
+                ADD POST
+              </button>
             </div>
           </div>
         </div>

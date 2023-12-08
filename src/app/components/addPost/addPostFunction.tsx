@@ -1,11 +1,11 @@
-import React from "react";
+import React, { FormEvent } from "react";
 import AddPostToast from "./addPostToast";
 
-const AddPostFunction = async (e: React.FormEvent<HTMLFormElement> | any) => {
+const AddPostFunction = async (e: FormEvent<HTMLFormElement>) => {
   //grabbing username
   const currentUserId = localStorage.getItem("currentUserInfo");
   //grabbing infos
-  const url = `http:/localhost:1337/api/posts`;
+  const url = `http://localhost:1337/api/posts`;
   //merging new post and old one
   const prevData = await fetch(url);
   const prevDataResponse = await prevData.json();
@@ -15,8 +15,8 @@ const AddPostFunction = async (e: React.FormEvent<HTMLFormElement> | any) => {
 
   const postArr = JSON.stringify([
     {
-      title: e.target.title.value,
-      postsContent: e.target.textmemory.value,
+      title: (e.target as HTMLFormElement).title.valueOf,
+      postsContent: (e.target as HTMLFormElement).textmemory.value,
       userId: userId,
       postId: new Date().getTime().toString(),
       createdDate: new Date().toISOString(),

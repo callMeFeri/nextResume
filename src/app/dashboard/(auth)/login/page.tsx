@@ -1,20 +1,16 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState, FormEvent } from "react";
 
 import Image from "next/image";
+
 import { useGlobalContext } from "@/app/context/AppContext";
 
 function LogIn() {
   const { authenticated, setAuthenticated, apiUrl }: any = useGlobalContext();
   const [showLogStatus, setShowLogStatus] = React.useState<boolean>(false);
-  const FetchDB = async (e: {
-    target: {
-      email: { value: string };
-      password: { value: string };
-    };
-  }) => {
-    const email = e.target.email.value;
-    const password = e.target.password.value;
+  const FetchDB = async (e: FormEvent<HTMLFormElement>) => {
+    const email = (e.target as HTMLFormElement).email.value;
+    const password = (e.target as HTMLFormElement).password.value;
 
     const response = await fetch(apiUrl);
     const responseData = await response.json();
