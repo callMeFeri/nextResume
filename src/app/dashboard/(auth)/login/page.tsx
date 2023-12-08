@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, FormEvent } from "react";
+import React, { FormEvent } from "react";
 
 // import dotenv from "dotenv";
 // dotenv.config();
@@ -58,7 +58,7 @@ function LogIn() {
   React.useEffect(() => {
     if (authenticated) {
       setError(false);
-      setTimeout(() => router.push("../about"), 3000);
+      setTimeout(() => router.push("../addpost"), 3000);
     }
   }, [authenticated, router]);
   return (
