@@ -4,6 +4,8 @@ import React, { useState, FormEvent } from "react";
 // import dotenv from "dotenv";
 // dotenv.config();
 
+import { useRouter } from "next/navigation";
+
 import Image from "next/image";
 
 import { useGlobalContext } from "@/app/context/AppContext";
@@ -11,6 +13,10 @@ import { useGlobalContext } from "@/app/context/AppContext";
 function LogIn() {
   const { authenticated, setAuthenticated, apiUrl }: any = useGlobalContext();
   const [showLogStatus, setShowLogStatus] = React.useState<boolean>(false);
+  const [error, setError] = React.useState<boolean>(false);
+
+  const router = useRouter();
+
   const FetchDB = async (e: FormEvent<HTMLFormElement>) => {
     const email = (e.target as HTMLFormElement).email.value;
     const password = (e.target as HTMLFormElement).password.value;
@@ -44,10 +50,17 @@ function LogIn() {
           "currentUserInfo",
           JSON.stringify(member.attributes.username)
         );
+        return;
       }
+      setError(true);
     });
   };
-
+  React.useEffect(() => {
+    if (authenticated) {
+      setError(false);
+      setTimeout(() => router.push("../about"), 3000);
+    }
+  }, [authenticated, router]);
   return (
     <div className="min-h-screen flex justify-center">
       <div className="max-w-screen-xl m-0 sm:m-10 bg-grey shadow sm:rounded-lg flex justify-center flex-1">
@@ -143,7 +156,9 @@ function LogIn() {
                         <span className="sr-only">Check icon</span>
                       </div>
                       <div className="ml-3 text-sm font-normal">
-                        You Are Now Logged In .
+                        You Are Now Logged In .<br /> Your Navbar Has Changed.
+                        <br />
+                        You Will Be Redirected Soon.
                       </div>
                       <button
                         type="button"
@@ -151,6 +166,53 @@ function LogIn() {
                         data-dismiss-target="#toast-success"
                         aria-label="Close"
                         onClick={() => setShowLogStatus(false)}
+                      >
+                        <span className="sr-only">Close</span>
+                        <svg
+                          className="w-3 h-3"
+                          aria-hidden="true"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 14 14"
+                        >
+                          <path
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  )}
+                  {error && (
+                    <div
+                      id="toast-fail"
+                      className="flex  items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
+                      role="alert"
+                    >
+                      <div className="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-green-500 bg-red-100 rounded-lg dark:bg-green-800 dark:text-green-200">
+                        <svg
+                          className="w-5 h-5"
+                          aria-hidden="true"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+                        </svg>
+                        <span className="sr-only">Check icon</span>
+                      </div>
+                      <div className="ml-3 text-sm font-normal">
+                        Wrong User Information.Please Try Again.
+                      </div>
+                      <button
+                        type="button"
+                        className="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
+                        data-dismiss-target="#toast-success"
+                        aria-label="Close"
+                        onClick={() => setError(false)}
                       >
                         <span className="sr-only">Close</span>
                         <svg

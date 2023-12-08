@@ -45,6 +45,7 @@ export default function Register() {
             body: JSON.stringify({ data }),
             headers: {
               "Content-type": "application/json",
+              Authorization: `Bearer ${process.env.NEXT_PUBLIC_}`,
             },
           });
           if (!response.ok) {
