@@ -24,7 +24,7 @@ function AddPost() {
                 <input
                   type="text"
                   placeholder="title"
-                  id="title"
+                  name="title"
                   className="ml-2 outline-none py-1 px-2 text-md border-2 rounded-md"
                 />
               </div>
@@ -36,7 +36,7 @@ function AddPost() {
                   Description:
                 </label>
                 <textarea
-                  id="description"
+                  name="textmemory"
                   rows={15}
                   placeholder="whrite here.."
                   className="w-full font-serif p-4 text-gray-600 bg-indigo-50 outline-none rounded-md"

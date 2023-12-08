@@ -24,6 +24,7 @@ const AddPostFunction = async (e: FormEvent<HTMLFormElement>) => {
   ]);
   let prevPost;
   let dataPost;
+  console.log("postArr", postArr);
   if (prevDataResponse.data.attributes.posts) {
     prevPost = JSON.parse(prevDataResponse.data.attributes.posts);
     const mergedPosts = prevPost.concat(JSON.parse(postArr));
