@@ -1,11 +1,12 @@
 import React from "react";
 import Image from "next/image";
+
 function Footer() {
   return (
     <footer className="fixed bottom-0 left-0 w-screen text-center bg-neutral-600 max-h-15">
-      <div className="container text-neutral-800 dark:text-neutral-200 text-centerd-slex mr-[50%]">
+      <div className="container text-neutral-800 dark:text-neutral-200 text-center mx-auto">
         <div className="text-center items-center text-black">
-          <p className="ml-[10%]">
+          <p className="mx-10">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque
             ea quis molestias. Fugiat pariatur maxime quis culpa corporis vitae
             repudiandae aliquam voluptatem veniam, est atque cumque eum delectus
@@ -14,9 +15,9 @@ function Footer() {
         </div>
       </div>
 
-      <div className="flex flex-row  text-center text-neutral-700 dark:text-neutral-200 ml-[50%]">
+      <div className="flex flex-row justify-center text-center text-neutral-700 dark:text-neutral-200">
         <a
-          className="text-neutral-800 dark:text-neutral-400"
+          className="text-neutral-800 dark:text-neutral-400 mx-2"
           href="https://www.twitter.com"
         >
           <Image
@@ -28,7 +29,7 @@ function Footer() {
           />
         </a>
         <a
-          className="text-neutral-800 dark:text-neutral-400"
+          className="text-neutral-800 dark:text-neutral-400 mx-2"
           href="https://www.twitter.com"
         >
           <Image

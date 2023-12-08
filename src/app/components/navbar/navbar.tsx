@@ -11,13 +11,13 @@ function Navbar() {
   const { authenticated }: any = useGlobalContext();
   const links = CheckAuth(authenticated);
   return (
-    <div className=" top-0 w-full">
-      <nav className="bg-gray-800 ">
-        <div className="max-w-7xl px-4 sm:px-6 lg:px-8 absolute">
-          <div className="flex h-16 justify-between">
+    <div className="top-0 w-full">
+      <nav className="">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
             <div className="flex items-center">
               <div className="hidden md:block">
-                <ul className="flex items-baseline space-x-4">
+                <ul className="flex items-center space-x-4">
                   {links.map(
                     (link: { title: string; id: number; url: string }) => {
                       const { title, id, url } = link;

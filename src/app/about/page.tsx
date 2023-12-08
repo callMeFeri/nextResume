@@ -1,26 +1,27 @@
 import React from "react";
 import Image from "next/image";
 import Button from "../components/button/Button";
+
 const About = (): JSX.Element => {
   return (
-    <div className="min-h-screen pb-20">
-      <div className="pt-20 items-center text-center min-h-full">
-        <div className="w-[80%] relative h-[500px] left-[10%]">
+    <div className="min-h-screen">
+      <div className=" items-center text-center min-h-full flex flex-col justify-center">
+        <div className="w-[80%] relative min-h-[500px]">
           <Image
             fill={true}
             alt="image"
             src="/lee-campbell-DtDlVpy-vvQ-unsplash.jpg"
             className="grayscale"
           />
-          <div className="absolute bottom-5 left-5 pt-20 text-white">
-            <h1 className="imgTitle text-5xl">
+          <div className="absolute bottom-5 pt-20 text-white">
+            <h1 className="text-5xl pl-2">
               Thank You For Visiting My Project!
             </h1>
           </div>
         </div>
-        <div className="flex flex-row">
-          <div className="item">
-            <h1 className="title">lorem ipsum</h1>
+        <div className="flex flex-col md:flex-row">
+          <div className="item md:w-1/2">
+            <h1 className="title">Lorem Ipsum</h1>
             <p className="font-serif">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Velit
@@ -39,8 +40,8 @@ const About = (): JSX.Element => {
               dolor sed viverra. Dignissim sodales ut eu sem integer vitae.
             </p>
           </div>
-          <div className="item">
-            <h1 className="title">lorem ipsum</h1>
+          <div className="item md:w-1/2">
+            <h1 className="title">Lorem Ipsum</h1>
             <p className="pb-5 font-serif">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Velit

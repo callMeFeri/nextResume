@@ -37,7 +37,7 @@ function LogIn() {
       };
     };
 
-    responseData.data.map((member: memberType) => {
+    responseData.data?.map((member: memberType) => {
       if (
         member.attributes.email === email &&
         member.attributes.password === password
