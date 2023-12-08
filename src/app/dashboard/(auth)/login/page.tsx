@@ -1,6 +1,9 @@
 "use client";
 import React, { useState, FormEvent } from "react";
 
+// import dotenv from "dotenv";
+// dotenv.config();
+
 import Image from "next/image";
 
 import { useGlobalContext } from "@/app/context/AppContext";
@@ -12,11 +15,16 @@ function LogIn() {
     const email = (e.target as HTMLFormElement).email.value;
     const password = (e.target as HTMLFormElement).password.value;
 
-    const response = await fetch(apiUrl);
+    const response = await fetch(apiUrl, {
+      headers: {
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_}`,
+      },
+    });
     const responseData = await response.json();
     type memberType = {
       id: number;
       attributes: {
+        username: string;
         email: string;
         password: string;
         id: number;
@@ -25,14 +33,17 @@ function LogIn() {
 
     responseData.data.map((member: memberType) => {
       if (
-        (member.attributes.email === email,
-        member.attributes.password === password)
+        member.attributes.email === email &&
+        member.attributes.password === password
       ) {
-        setAuthenticated(true);
         setShowLogStatus(true);
 
-        localStorage.setItem("auth", JSON.stringify(authenticated));
-        localStorage.setItem("currentUserInfo", JSON.stringify(member.id));
+        setAuthenticated(true);
+        localStorage.setItem("auth", JSON.stringify(true));
+        localStorage.setItem(
+          "currentUserInfo",
+          JSON.stringify(member.attributes.username)
+        );
       }
     });
   };
