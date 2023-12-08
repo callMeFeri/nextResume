@@ -11,16 +11,15 @@ const About = (): JSX.Element => {
             fill={true}
             alt="image"
             src="/lee-campbell-DtDlVpy-vvQ-unsplash.jpg"
-            className="grayscale"
           />
           <div className="absolute bottom-5 pt-20 text-white">
-            <h1 className="text-5xl pl-2">
+            <h1 className="lg:text-5xl pl-2 md:text-2xl">
               Thank You For Visiting My Project!
             </h1>
           </div>
         </div>
         <div className="flex flex-col md:flex-row">
-          <div className="item md:w-1/2">
+          <div className="item md:w-1/2 pl-2 pr-2">
             <h1 className="title">Lorem Ipsum</h1>
             <p className="font-serif">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do

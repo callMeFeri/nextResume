@@ -24,7 +24,7 @@ function Navbar() {
                       return (
                         <li
                           key={id}
-                          className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                          className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 lg:text-sm sm:text-xs"
                         >
                           <Link href={url} className="text-yellow-600">
                             {title}

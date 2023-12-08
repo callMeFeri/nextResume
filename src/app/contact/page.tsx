@@ -6,8 +6,8 @@ import { useGlobalContext } from "../context/AppContext";
 const Contact = (): JSX.Element => {
   const { mode }: any = useGlobalContext();
   return (
-    <div className="container min-h-screen">
-      <h1 className="text-6xl bg-gradient-to-b from-green-800 to-blue-300 bg-clip-text text-transparent pt-20">
+    <div className="container min-h-screen sm:pb-20">
+      <h1 className="lg:text-6xl sm:text-4xl bg-gradient-to-b from-green-800 to-blue-300 bg-clip-text text-transparent">
         We Will Be Honored For Your Comment
       </h1>
       <div className="flex gap-25 items-center pt-20">
@@ -20,7 +20,9 @@ const Contact = (): JSX.Element => {
           />
         </div>
         <form className="flex-1 flex gap-1 flex-col">
-          <h1 className="text-4xl mb-5">Write your comment down here:</h1>
+          <h1 className="lg:text-4xl sm:text-xl mb-5">
+            Write your comment down here:
+          </h1>
           <input
             type="text"
             placeholder="Name"
