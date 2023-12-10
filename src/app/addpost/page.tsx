@@ -17,9 +17,9 @@ function page() {
     );
   } else {
     return (
-      <div className="pt-20">
+      <div className="pt-20 ">
         <div className="grid min-h-screen px-4 bg-grey-600 place-content-center">
-          <div className="text-center">
+          <div className="text-center sm:pb-20 lg:pb-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 1024 768"

@@ -44,7 +44,7 @@ function AddPost() {
                   name="textmemory"
                   rows={15}
                   required
-                  placeholder="whrite here.."
+                  placeholder="write here.."
                   className="w-full font-serif p-4 text-gray-600 bg-indigo-50 outline-none rounded-md"
                 />
               </div>

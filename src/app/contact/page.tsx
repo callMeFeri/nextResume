@@ -20,7 +20,7 @@ const Contact = (): JSX.Element => {
           />
         </div>
         <form className="flex-1 flex gap-1 flex-col">
-          <h1 className="lg:text-4xl sm:text-xl mb-5">
+          <h1 className="lg:text-4xl sm:text-`xl mb-5">
             Write your comment down here:
           </h1>
           <input
