@@ -10,6 +10,16 @@ import Image from "next/image";
 
 import { useGlobalContext } from "@/app/context/AppContext";
 
+type memberType = {
+  id: number;
+  attributes: {
+    username: string;
+    email: string;
+    password: string;
+    id: number;
+  };
+};
+
 function LogIn() {
   const { authenticated, setAuthenticated, apiUrl }: any = useGlobalContext();
   const [showLogStatus, setShowLogStatus] = React.useState<boolean>(false);
@@ -27,37 +37,27 @@ function LogIn() {
       },
     });
     const responseData = await response.json();
-    type memberType = {
-      id: number;
-      attributes: {
-        username: string;
-        email: string;
-        password: string;
-        id: number;
-      };
-    };
 
     responseData.data?.map((member: memberType) => {
       if (
         member.attributes.email === email &&
         member.attributes.password === password
       ) {
-        setShowLogStatus(true);
-
-        setAuthenticated(true);
-        localStorage.setItem("auth", JSON.stringify(true));
-        localStorage.setItem(
-          "currentUserInfo",
-          JSON.stringify(member.attributes.username)
+        return (
+          setShowLogStatus(true),
+          setAuthenticated(true),
+          localStorage.setItem("auth", JSON.stringify(true)),
+          localStorage.setItem(
+            "currentUserInfo",
+            JSON.stringify(member.attributes.username)
+          )
         );
-        return;
       }
       setError(true);
     });
   };
   React.useEffect(() => {
     if (authenticated) {
-      setError(false);
       setTimeout(() => router.push("../addpost"), 3000);
     }
   }, [authenticated, router]);
