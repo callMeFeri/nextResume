@@ -22,7 +22,7 @@ export const AppProvider = ({ children }: { children: JSX.Element }) => {
         ? localStorage.setItem("premission", `${process.env.NEXT_PUBLIC_}`)
         : null;
     }
-  }, [authenticated]);
+  }, [authenticated, userData]);
 
   const toggle = () => {
     setMode((prev) => (prev === "light" ? "dark" : "light"));
