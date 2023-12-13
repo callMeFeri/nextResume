@@ -35,22 +35,22 @@ function LogIn() {
     });
     const data = await res.json();
 
-    const userDetail = {
-      email: email,
-      identifier: `${process.env.NEXT_PUBLIC_}`,
-    };
-
     const matchedUser = data.data?.find(
       (user: memberType) =>
         email === user.attributes.email && password === user.attributes.password
     );
+    console.log(matchedUser);
+    const userDetail = {
+      email,
+      identifier: `${process.env.NEXT_PUBLIC_}`,
+    };
 
     matchedUser
       ? (setAuthenticated(true),
         setShowLogStatus(true),
         setError(false),
         localStorage.setItem("user", JSON.stringify(userDetail)),
-        console.log(localStorage.getItem("user")))
+        localStorage.setItem("nav", "true"))
       : setError(true);
 
     //this part was for next-auth

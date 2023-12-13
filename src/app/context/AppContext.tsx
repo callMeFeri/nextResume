@@ -6,8 +6,11 @@ export const AppProvider = ({ children }: { children: JSX.Element }) => {
   const user = localStorage.getItem("user");
   const userData = user ? JSON.parse(user) : null;
 
+  const showNav = localStorage.getItem("nav");
+  const showNavBar = showNav && JSON.parse(showNav);
   const [mode, setMode] = useState("dark");
-  const [authenticated, setAuthenticated] = useState<boolean>(false);
+  const [authenticated, setAuthenticated] = useState<boolean>();
+  const [nav, setNav] = useState<boolean>(false);
 
   const apiUrl = "http://localhost:1337/api/user-info";
   const postUrl = "http://localhost:1337/api/posts";
@@ -16,11 +19,12 @@ export const AppProvider = ({ children }: { children: JSX.Element }) => {
     if (!authenticated) {
       localStorage.removeItem("user");
     } else {
-      userData.identifier === process.env.NEXT_PUBLIC_
-        ? localStorage.setItem("premission", `${process.env.NEXT_PUBLIC_}`)
+      userData?.identifier === process.env.NEXT_PUBLIC_
+        ? (localStorage.setItem("premission", `${process.env.NEXT_PUBLIC_}`),
+          setNav(showNavBar))
         : null;
     }
-  }, [authenticated, userData]);
+  }, [authenticated, showNavBar, userData]);
 
   const toggle = () => {
     setMode((prev) => (prev === "light" ? "dark" : "light"));
@@ -36,6 +40,7 @@ export const AppProvider = ({ children }: { children: JSX.Element }) => {
         apiUrl,
         postUrl,
         userData,
+        nav,
       }}
     >
       <div className={`theme ${mode}`}>{children}</div>
