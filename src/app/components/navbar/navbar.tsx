@@ -9,7 +9,10 @@ import { useGlobalContext } from "@/app/context/AppContext";
 
 function Navbar() {
   const { authenticated }: any = useGlobalContext();
-  const links = CheckAuth(authenticated);
+  const premission = localStorage.getItem("premission");
+  const links =
+    premission == process.env.NEXT_PUBLIC_ ? CheckAuth(true) : CheckAuth(false);
+
   return (
     <div className="top-0 w-full">
       <nav className="">

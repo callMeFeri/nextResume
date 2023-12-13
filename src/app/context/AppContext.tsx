@@ -3,7 +3,6 @@ import React, { useEffect, createContext, useState, useContext } from "react";
 
 export const AppContext = createContext({});
 export const AppProvider = ({ children }: { children: JSX.Element }) => {
-  //const authLogInfo: string | null = localStorage.getItem("user") || null;
   const user = localStorage.getItem("user");
   const userData = user ? JSON.parse(user) : null;
 
@@ -17,7 +16,6 @@ export const AppProvider = ({ children }: { children: JSX.Element }) => {
     if (!authenticated) {
       localStorage.removeItem("user");
     } else {
-      console.log(userData);
       userData.identifier === process.env.NEXT_PUBLIC_
         ? localStorage.setItem("premission", `${process.env.NEXT_PUBLIC_}`)
         : null;
