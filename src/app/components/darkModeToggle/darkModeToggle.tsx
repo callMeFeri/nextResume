@@ -1,10 +1,11 @@
 "use client";
-import { useGlobalContext } from "@/app/context/AppContext";
 import React from "react";
+import { useGlobalContext } from "@/app/context/AppContext";
 
 function DarkModeToggle() {
-  const { toggle, mode }: { toggle: () => void | unknown; mode: string } =
-    useGlobalContext();
+  const context = useGlobalContext();
+  const { toggle, mode } = context;
+
   return (
     <div
       className="w-[50px] h-[24px] border-solid border border-green rounded-3xl d-flex justify-between p-[2px] items-center flex flex-row relative"

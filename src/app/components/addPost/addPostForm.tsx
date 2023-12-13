@@ -1,8 +1,9 @@
 import React from "react";
 import AddPostFunction from "./addPostFunction";
 
-function AddPost() {
+function AddPost({ email }: { email?: string | undefined }) {
   const currentUserInfo = localStorage.getItem("currentUserInfo");
+
   return (
     <div>
       <form
@@ -16,6 +17,7 @@ function AddPost() {
             <h1 className="text-center text-2xl font-bold text-black mb-10">
               ADD POST
             </h1>
+            <h3>Hi {`${email}`}</h3>
             <div className="space-y-4">
               <div className="flex justify-center items-center">
                 <label

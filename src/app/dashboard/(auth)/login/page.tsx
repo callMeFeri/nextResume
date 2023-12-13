@@ -1,24 +1,15 @@
 "use client";
 import React, { FormEvent } from "react";
 
-// import dotenv from "dotenv";
-// dotenv.config();
-
 import { useRouter } from "next/navigation";
 
 import Image from "next/image";
 
 import { useGlobalContext } from "@/app/context/AppContext";
 
-type memberType = {
-  id: number;
-  attributes: {
-    username: string;
-    email: string;
-    password: string;
-    id: number;
-  };
-};
+import type { memberType } from "@/app/types/types";
+
+//import { signIn } from "next-auth/react";
 
 function LogIn() {
   const { authenticated, setAuthenticated, apiUrl }: any = useGlobalContext();
@@ -27,40 +18,54 @@ function LogIn() {
 
   const router = useRouter();
 
+  React.useEffect(() => {
+    authenticated && setTimeout(() => router.push("/addpost"), 3000);
+  }, [authenticated, router]);
+
   const FetchDB = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
     const email = (e.target as HTMLFormElement).email.value;
     const password = (e.target as HTMLFormElement).password.value;
 
-    const response = await fetch(apiUrl, {
+    const res = await fetch(apiUrl, {
       headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_}`,
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
       },
     });
-    const responseData = await response.json();
+    const data = await res.json();
 
-    responseData.data?.map((member: memberType) => {
-      if (
-        member.attributes.email === email &&
-        member.attributes.password === password
-      ) {
-        return (
-          setShowLogStatus(true),
-          setAuthenticated(true),
-          localStorage.setItem("auth", JSON.stringify(true)),
-          localStorage.setItem(
-            "currentUserInfo",
-            JSON.stringify(member.attributes.username)
-          )
-        );
-      }
-      setError(true);
-    });
+    const userDetail = {
+      email: email,
+      identifier: `${process.env.NEXT_PUBLIC_}`,
+    };
+
+    const matchedUser = data.data?.find(
+      (user: memberType) =>
+        email === user.attributes.email && password === user.attributes.password
+    );
+
+    matchedUser
+      ? (setAuthenticated(true),
+        setShowLogStatus(true),
+        setError(false),
+        localStorage.setItem("user", JSON.stringify(userDetail)),
+        console.log(localStorage.getItem("user")))
+      : setError(true);
+
+    //this part was for next-auth
+    // signIn("credentials", {
+    //   email: (e.target as HTMLFormElement).email.value,
+    //   password: (e.target as HTMLFormElement).password.value,
+    //   redirect: false,
+    // }).then(({ ok, error }: any) => {
+    //   if (ok) {
+    //     router.push("/profile");
+    //   } else {
+    //     console.warn("error: ", error);
+    //   }
+    // });
   };
-  React.useEffect(() => {
-    if (authenticated) {
-      setTimeout(() => router.push("../addpost"), 3000);
-    }
-  }, [authenticated, router]);
   return (
     <div className="min-h-screen flex justify-center">
       <div className="max-w-screen-xl m-0 sm:m-10 bg-grey shadow sm:rounded-lg flex justify-center flex-1">
@@ -122,7 +127,7 @@ function LogIn() {
               </div>
 
               <div className="mx-auto max-w-xs">
-                <form onSubmit={(e) => (e.preventDefault(), FetchDB(e))}>
+                <form onSubmit={FetchDB}>
                   <input
                     className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
                     type="email"

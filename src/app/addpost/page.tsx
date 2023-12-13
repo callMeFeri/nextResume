@@ -7,12 +7,14 @@ import AddPost from "../components/addPost/addPostForm";
 import Link from "next/link";
 
 function page() {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { authenticated }: { authenticated?: boolean } = useGlobalContext();
-  if (authenticated) {
+  const premission = localStorage.getItem("premission");
+  const { userData }: { userData?: { identifier: string; email: string } } =
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    useGlobalContext();
+  if (premission == process.env.NEXT_PUBLIC_) {
     return (
       <div>
-        <AddPost />
+        <AddPost email={userData?.email} />
       </div>
     );
   } else {
