@@ -9,9 +9,12 @@ function AddPostExitButton() {
   const router = useRouter();
   const premission = localStorage.getItem("premission");
 
-  const { setAuthenticated }: { setAuthenticated?: any } = useGlobalContext();
+  const {
+    setAuthenticated,
+    authenticated,
+  }: { setAuthenticated?: any; authenticated?: boolean } = useGlobalContext();
 
-  if (premission == process.env.NEXT_PUBLIC_) {
+  if (authenticated && premission == process.env.NEXT_PUBLIC_) {
     return (
       <li className=" hover:bg-gray-700 text-yellow-600 hover:cursor-pointer hover:text-white rounded-md px-3 py-2 text-sm font-medium">
         <a
