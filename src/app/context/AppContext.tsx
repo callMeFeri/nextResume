@@ -7,9 +7,9 @@ export const AppProvider = ({ children }: { children: JSX.Element }) => {
   const userData = user ? JSON.parse(user) : null;
 
   const showNav = localStorage.getItem("nav");
-  const showNavBar = showNav && JSON.parse(showNav);
+  const showNavBar = showNav ? JSON.parse(showNav) : false;
   const [mode, setMode] = useState("dark");
-  const [authenticated, setAuthenticated] = useState<boolean>();
+  const [authenticated, setAuthenticated] = useState<boolean>(showNavBar);
   const [nav, setNav] = useState<boolean>(false);
 
   const apiUrl = "http://localhost:1337/api/user-info";

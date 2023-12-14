@@ -6,7 +6,6 @@ function CheckAuth(auth: boolean) {
         title: "Home",
         url: "/",
       },
-
       {
         id: 5,
         title: "About",

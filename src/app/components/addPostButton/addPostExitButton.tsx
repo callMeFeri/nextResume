@@ -3,10 +3,13 @@ import { useGlobalContext } from "@/app/context/AppContext";
 import { useRouter } from "next/navigation";
 
 import React from "react";
+import { Dispatch } from "react";
 
 function AddPostExitButton() {
   const router = useRouter();
   const premission = localStorage.getItem("premission");
+
+  const { setAuthenticated }: { setAuthenticated?: any } = useGlobalContext();
 
   if (premission == process.env.NEXT_PUBLIC_) {
     return (
@@ -15,7 +18,9 @@ function AddPostExitButton() {
           onClick={() => (
             localStorage.removeItem("user"),
             localStorage.removeItem("premission"),
-            router.refresh()
+            localStorage.removeItem("nav"),
+            setAuthenticated(false),
+            router.push("dashboard/login")
           )}
         >
           Exit

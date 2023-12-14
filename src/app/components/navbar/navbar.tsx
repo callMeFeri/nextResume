@@ -8,8 +8,8 @@ import CheckAuth from "../checkAuth/checkAuth";
 import { useGlobalContext } from "@/app/context/AppContext";
 
 function Navbar() {
-  const { nav }: { nav?: boolean } = useGlobalContext();
-  const links = CheckAuth(nav as boolean);
+  const { authenticated }: { authenticated?: boolean } = useGlobalContext();
+  const links = CheckAuth(authenticated as boolean);
   return (
     <div className="top-0 w-full">
       <nav className="">
