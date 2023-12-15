@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 import { signUpSchema, TSignUpSchema } from "@/schema/schema";
 
@@ -12,7 +13,7 @@ import { useGlobalContext } from "@/app/context/AppContext";
 export default function Register() {
   const router = useRouter();
 
-  const { apiUrl }: any = useGlobalContext();
+  const { apiUrl }: { apiUrl?: string } = useGlobalContext();
 
   const [showTerms, setShowTerms] = useState<boolean>(false);
   const [registerStatus, setRegisterStatus] = useState<boolean>(false);
@@ -43,45 +44,60 @@ export default function Register() {
         </h1>
         <form
           className="min-h-[100%] pb-[70px]"
-          onSubmit={handleSubmit(async ({ confirmPassword, ...data }) => {
-            const response = await fetch(apiUrl, {
-              method: "post",
-              body: JSON.stringify({ data }),
-              headers: {
-                "Content-type": "application/json",
-                Authorization: `Bearer ${process.env.NEXT_PUBLIC_}`,
-              },
-            });
-            if (!response.ok) {
-              console.log("resErr", response.ok);
+          onSubmit={handleSubmit(
+            async ({ confirmPassword, firstname, lastname, ...data }) => {
+              const usreData = {
+                username: data.username,
+                email: data.email,
+                password: data.password,
+              };
 
-              return;
+              try {
+                const response = await axios.post(
+                  `${process.env.NEXT_PUBLIC_}/register`,
+                  usreData
+                );
+
+                // Handle success.
+                console.log("Well done!");
+                localStorage.setItem(
+                  "User profile",
+                  JSON.stringify(response.data.user.username)
+                );
+                localStorage.setItem(
+                  "User token",
+                  JSON.stringify(response.data.jwt)
+                );
+                setRegisterStatus(true);
+                router.push("/addpost");
+              } catch (error) {
+                // Handle error.
+                console.log("An error occurred:", error);
+              }
+              //this part is unneccessary
+
+              // if (response.errors) {
+              //   const errors = response.errors;
+              //   (
+              //     [
+              //       "email",
+              //       "password",
+              //       "firstname",
+              //       "lastname",
+              //       "username",
+              //       "userId",
+              //     ] as const
+              //   ).forEach((errorKey) => {
+              //     if (errors[errorKey]) {
+              //       setError(errorKey, {
+              //         type: "server",
+              //         message: errors[errorKey],
+              //       });
+              //     }
+              //   });
+              // }
             }
-
-            const responseData = await response.json();
-
-            if (responseData.errors) {
-              const errors = responseData.errors;
-              (
-                [
-                  "email",
-                  "password",
-                  "firstname",
-                  "lastname",
-                  "username",
-                  "userId",
-                ] as const
-              ).forEach((errorKey) => {
-                if (errors[errorKey]) {
-                  setError(errorKey, {
-                    type: "server",
-                    message: errors[errorKey],
-                  });
-                }
-              });
-            }
-            setRegisterStatus(true);
-          })}
+          )}
         >
           <div className="grid gap-6 mb-6 md:grid-cols-2 pt-20 pl-5 pr-5">
             <div>

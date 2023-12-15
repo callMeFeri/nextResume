@@ -6,15 +6,31 @@ import { useGlobalContext } from "../context/AppContext";
 import AddPost from "../components/addPost/addPostForm";
 import Link from "next/link";
 
+import axios from "axios";
+import checkAuth from "../components/checkAuth/checkAuth";
+import checkRegistered from "../components/checkRegisteres/checkRegistered";
+
+// Request API.
+// axios
+//   .get(`${process.env.NEXT_PUBLIC_}`)
+//   .then((response) => {
+//     // Handle success.
+//     console.log("Data: ", response.data);
+//   })
+//   .catch((error) => {
+//     // Handle error.
+//     console.log("An error occurred:", error.response);
+//   });
 function page() {
-  const premission = localStorage.getItem("premission");
-  const { userData }: { userData?: { identifier: string; email: string } } =
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    useGlobalContext();
-  if (premission == process.env.NEXT_PUBLIC_) {
+  const premissionAndEmail = checkRegistered();
+  //const premission = localStorage.getItem("premission");
+  // const { userData }: { userData?: { identifier: string; email: string } } =
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  useGlobalContext();
+  if (premissionAndEmail) {
     return (
       <div>
-        <AddPost email={userData?.email} />
+        <AddPost email={premissionAndEmail} />
       </div>
     );
   } else {

@@ -19,4 +19,15 @@ export type memberType = {
     postUrl: string;
   
   }
+
+  export type User={
+    jwt:string,
+    user:{
+      id:number,
+      username:string,
+      email:string,
+      password:string
+    }
+
+  }
   

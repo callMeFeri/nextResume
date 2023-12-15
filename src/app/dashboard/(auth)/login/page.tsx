@@ -1,6 +1,8 @@
 "use client";
 import React, { FormEvent } from "react";
 
+import axios from "axios";
+
 import { useRouter } from "next/navigation";
 
 import Image from "next/image";
@@ -22,9 +24,9 @@ function LogIn() {
 
   const router = useRouter();
 
-  React.useEffect(() => {
-    authenticated && setTimeout(() => router.push("/addpost"), 3000);
-  }, [authenticated, router]);
+  // React.useEffect(() => {
+  //   authenticated && setTimeout(() => router.push("/addpost"), 3000);
+  // }, [authenticated, router]);
 
   const FetchDB = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -32,30 +34,53 @@ function LogIn() {
     const email = (e.target as HTMLFormElement).email.value;
     const password = (e.target as HTMLFormElement).password.value;
 
-    const res = await fetch(apiUrl, {
-      headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
-      },
-    });
-    const data = await res.json();
+    // Request API.
+    axios
+      .post(`${process.env.NEXT_PUBLIC_}`, {
+        identifier: email,
+        password: password,
+      })
+      .then((response) => {
+        // Handle success.
+        const user = JSON.stringify(response.data);
+        console.log("Well done!", user),
+          localStorage.setItem("User profile", user),
+          localStorage.setItem("User token", response.data.jwt),
+          setAuthenticated(true),
+          setShowLogStatus(true),
+          setError(false),
+          localStorage.setItem("nav", "true");
+      })
+      .catch((error) => {
+        // Handle error.
+        console.log("An error occurred:", error.response);
+        setError(true);
+      });
+    //this was normal login
+    // const res = await fetch(apiUrl, {
+    //   headers: {
+    //     Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+    //   },
+    // });
+    // const data = await res.json();
 
-    const matchedUser = data.data?.find(
-      (user: memberType) =>
-        email === user.attributes.email && password === user.attributes.password
-    );
-    console.log(matchedUser);
-    const userDetail = {
-      email,
-      identifier: `${process.env.NEXT_PUBLIC_}`,
-    };
+    // const matchedUser = data.data?.find(
+    //   (user: memberType) =>
+    //     email === user.attributes.email && password === user.attributes.password
+    // );
+    // console.log(matchedUser);
+    // const userDetail = {
+    //   email,
+    //   identifier: `${process.env.NEXT_PUBLIC_}`,
+    // };
 
-    matchedUser
-      ? (setAuthenticated(true),
-        setShowLogStatus(true),
-        setError(false),
-        localStorage.setItem("user", JSON.stringify(userDetail)),
-        localStorage.setItem("nav", "true"))
-      : setError(true);
+    // matchedUser
+    //   ? (setAuthenticated(true),
+    //     setShowLogStatus(true),
+    //     setError(false),
+    //     localStorage.setItem("user", JSON.stringify(userDetail)),
+    //     localStorage.setItem("nav", "true"))
+    //   : setError(true);
 
     //this part was for next-auth
     // signIn("credentials", {
