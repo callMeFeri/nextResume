@@ -1,34 +1,45 @@
 "use client";
-import React from "react";
-
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-
 import type { User } from "@/app/types/types";
+
+// eslint-disable-next-line @next/next/no-async-client-component
 function CheckRegistered() {
-  const [result, setResult] = React.useState<boolean>();
+  const [result, setResult] = useState<boolean | string>(false);
 
-  const userToken = localStorage.getItem("User token");
-  const user = localStorage.getItem("User profile");
-  const userData: User = user && JSON.parse(user);
-  const userEmail = userData?.user.email;
-  const userPassword = userData?.user.password;
-  console.log("local storage user datas", userData);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const userToken = localStorage.getItem("User token") as string;
+        const user = localStorage.getItem("User profile");
+        const userData: User = user && JSON.parse(user);
+        const email = userData?.user.email;
+        const username = userData?.user.username;
 
-  const response = axios
-    .post(`${process.env.NEXT_PUBLIC_}`, {
-      identifier: userEmail,
-      password: userPassword,
-    })
-    .then((res) => {
-      console.log("response in CheckRegistered:", res);
-      if (res.data.jwt === userToken) {
+        const password = localStorage.getItem("User password");
+        console.log("userToken", username);
+
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_}`, {
+          identifier: email,
+          password: password,
+        });
+
+        if (response.data.user.username === username) {
+          console.log("username", response.data.user.username);
+          setResult(username);
+        } else {
+          setResult(false);
+        }
+      } catch (error) {
+        console.log("Error:", error);
         setResult(false);
       }
-    })
-    .catch((error) => {
-      console.log("add post authorization error", error);
-      setResult(true);
-    });
+    };
+
+    fetchData();
+  }, []);
+
   return result;
 }
+
 export default CheckRegistered;

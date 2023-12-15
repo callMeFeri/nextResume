@@ -1,7 +1,7 @@
 import React from "react";
 import AddPostFunction from "./addPostFunction";
 
-function AddPost({ email }: { email?: string | undefined }) {
+function AddPost({ username }: { username?: string | boolean }) {
   return (
     <div>
       <form
@@ -15,7 +15,7 @@ function AddPost({ email }: { email?: string | undefined }) {
             <h1 className="text-center text-2xl font-bold text-black mb-10">
               ADD POST
             </h1>
-            <h3 className="text-black">Hi {`${email}`}</h3>
+            <h3 className="text-black">Hi {`${username}`}</h3>
             <div className="space-y-4">
               <div className="flex justify-center items-center">
                 <label

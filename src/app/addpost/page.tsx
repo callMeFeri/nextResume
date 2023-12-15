@@ -1,20 +1,18 @@
 "use client";
 import React from "react";
 
-import { useGlobalContext } from "../context/AppContext";
-
+import CheckRegistered from "../components/checkRegistered/checkRegistered";
 import AddPost from "../components/addPost/addPostForm";
+
 import Link from "next/link";
 
-import CheckRegistered from "../components/checkRegistered/checkRegistered";
-
 function page() {
-  const premissionAndEmail = CheckRegistered();
+  const premissionAndUsername = CheckRegistered();
 
-  if (premissionAndEmail) {
+  if (premissionAndUsername) {
     return (
       <div>
-        <AddPost />
+        <AddPost username={premissionAndUsername} />
       </div>
     );
   } else {
