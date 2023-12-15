@@ -8,7 +8,7 @@ import Link from "next/link";
 
 import axios from "axios";
 import checkAuth from "../components/checkAuth/checkAuth";
-import checkRegistered from "../components/checkRegisteres/checkRegistered";
+import CheckRegistered from "../components/checkRegisteres/CheckRegistered";
 
 // Request API.
 // axios
@@ -21,16 +21,16 @@ import checkRegistered from "../components/checkRegisteres/checkRegistered";
 //     // Handle error.
 //     console.log("An error occurred:", error.response);
 //   });
-function page() {
-  const premissionAndEmail = checkRegistered();
+async function page() {
+  const premissionAndEmail = CheckRegistered();
   //const premission = localStorage.getItem("premission");
   // const { userData }: { userData?: { identifier: string; email: string } } =
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useGlobalContext();
-  if (premissionAndEmail) {
+  if (await premissionAndEmail) {
     return (
       <div>
-        <AddPost email={premissionAndEmail} />
+        <AddPost />
       </div>
     );
   } else {

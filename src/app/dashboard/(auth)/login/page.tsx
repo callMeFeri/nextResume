@@ -43,7 +43,7 @@ function LogIn() {
       .then((response) => {
         // Handle success.
         const user = JSON.stringify(response.data);
-        console.log("Well done!", user),
+        console.log("response data in login form:", typeof response.data),
           localStorage.setItem("User profile", user),
           localStorage.setItem("User token", response.data.jwt),
           setAuthenticated(true),

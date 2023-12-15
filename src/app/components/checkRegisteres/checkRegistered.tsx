@@ -1,9 +1,12 @@
+"use client";
 import React from "react";
 
 import axios from "axios";
 
 import type { User } from "@/app/types/types";
-function checkRegistered() {
+function CheckRegistered() {
+  const [result, setResult] = React.useState<boolean>();
+
   const userToken = localStorage.getItem("User token");
   const user = localStorage.getItem("User profile");
   const userData: User = user && JSON.parse(user);
@@ -15,7 +18,16 @@ function checkRegistered() {
       identifier: userEmail,
       password: userPassword,
     })
-    .then((res) => true)
-    .catch(() => false);
+    .then((res) => {
+      console.log("response in CheckRegistered:", res);
+      if (res.data.jwt === userToken) {
+        setResult(false);
+      }
+    })
+    .catch((error) => {
+      console.log("add post authorization error", error);
+      setResult(true);
+    });
+  return result;
 }
-export default checkRegistered;
+export default CheckRegistered;
