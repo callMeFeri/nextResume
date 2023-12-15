@@ -24,9 +24,9 @@ function LogIn() {
 
   const router = useRouter();
 
-  // React.useEffect(() => {
-  //   authenticated && setTimeout(() => router.push("/addpost"), 3000);
-  // }, [authenticated, router]);
+  React.useEffect(() => {
+    authenticated && setTimeout(() => router.push("/addpost"), 3000);
+  }, [authenticated, router]);
 
   const FetchDB = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
