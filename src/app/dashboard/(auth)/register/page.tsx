@@ -13,11 +13,7 @@ export default function Register() {
   const router = useRouter();
 
   const [showTerms, setShowTerms] = useState<boolean>(false);
-
-  const {
-    setAuthenticated,
-    authenticated,
-  }: { setAuthenticated?: any; authenticated?: boolean } = useGlobalContext();
+  const [registerStatus, setRegisterStatus] = useState<boolean>(false);
 
   const {
     register,
@@ -29,10 +25,10 @@ export default function Register() {
   });
 
   useEffect(() => {
-    if (authenticated) {
-      setTimeout(() => router.push("/"), 1000);
+    if (registerStatus) {
+      setTimeout(() => router.push("/dashboard/login"), 1000);
     }
-  }, [authenticated, router]);
+  }, [registerStatus, router]);
   if (!localStorage.getItem("nav")) {
     return (
       <div className="min-h-screen">
@@ -56,17 +52,7 @@ export default function Register() {
                 );
 
                 // Handle success.
-                localStorage.setItem("nav", "true");
-                localStorage.setItem(
-                  "User profile",
-                  JSON.stringify(response.data.user)
-                );
-                localStorage.setItem(
-                  "User token",
-                  JSON.stringify(response.data.jwt)
-                );
-                localStorage.setItem("User password", data.password);
-                setAuthenticated(true);
+                setRegisterStatus(true);
               } catch (error) {
                 // Handle error.
                 console.log("An error occurred:", error);
@@ -248,7 +234,7 @@ export default function Register() {
               </div>
             </section>
           )}
-          {authenticated && (
+          {registerStatus && (
             <div className="pl-[40%] pb-5">
               <div
                 id="toast-default"
@@ -277,7 +263,7 @@ export default function Register() {
                   Succecfully registered.Please wait a second to redirect...
                 </div>
                 <button
-                  onClick={() => setAuthenticated(false)}
+                  onClick={() => setRegisterStatus(false)}
                   type="button"
                   className="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
                   data-dismiss-target="#toast-default"

@@ -10,11 +10,7 @@ function page() {
   const premissionAndUsername = CheckRegistered();
 
   if (premissionAndUsername) {
-    return (
-      <div>
-        <AddPost username={premissionAndUsername} />
-      </div>
-    );
+    return <AddPost username={premissionAndUsername} />;
   } else {
     return <LogInFirst />;
   }
