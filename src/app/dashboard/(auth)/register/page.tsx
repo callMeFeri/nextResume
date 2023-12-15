@@ -7,20 +7,17 @@ import { signUpSchema, TSignUpSchema } from "@/schema/schema";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-
 import { useGlobalContext } from "@/app/context/AppContext";
 
 export default function Register() {
   const router = useRouter();
 
-  const { apiUrl }: { apiUrl?: string } = useGlobalContext();
-
   const [showTerms, setShowTerms] = useState<boolean>(false);
-  const [registerStatus, setRegisterStatus] = useState<boolean>(false);
 
-  const premission = localStorage.getItem("premission")
-    ? localStorage.getItem("premission")
-    : "";
+  const {
+    setAuthenticated,
+    authenticated,
+  }: { setAuthenticated?: any; authenticated?: boolean } = useGlobalContext();
 
   const {
     register,
@@ -32,10 +29,10 @@ export default function Register() {
   });
 
   useEffect(() => {
-    if (registerStatus) {
-      setTimeout(() => router.push("../dashboard/login"), 1000);
+    if (authenticated) {
+      setTimeout(() => router.push("/"), 1000);
     }
-  }, [registerStatus, router]);
+  }, [authenticated, router]);
   if (!localStorage.getItem("nav")) {
     return (
       <div className="min-h-screen">
@@ -59,17 +56,17 @@ export default function Register() {
                 );
 
                 // Handle success.
-                console.log("Well done!");
+                localStorage.setItem("nav", "true");
                 localStorage.setItem(
                   "User profile",
-                  JSON.stringify(response.data.user.username)
+                  JSON.stringify(response.data.user)
                 );
                 localStorage.setItem(
                   "User token",
                   JSON.stringify(response.data.jwt)
                 );
-                setRegisterStatus(true);
-                router.push("/addpost");
+                localStorage.setItem("User password", data.password);
+                setAuthenticated(true);
               } catch (error) {
                 // Handle error.
                 console.log("An error occurred:", error);
@@ -251,7 +248,7 @@ export default function Register() {
               </div>
             </section>
           )}
-          {registerStatus && (
+          {authenticated && (
             <div className="pl-[40%] pb-5">
               <div
                 id="toast-default"
@@ -280,7 +277,7 @@ export default function Register() {
                   Succecfully registered.Please wait a second to redirect...
                 </div>
                 <button
-                  onClick={() => setRegisterStatus(false)}
+                  onClick={() => setAuthenticated(false)}
                   type="button"
                   className="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
                   data-dismiss-target="#toast-default"

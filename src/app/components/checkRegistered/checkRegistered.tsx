@@ -10,7 +10,6 @@ function CheckRegistered() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const userToken = localStorage.getItem("User token") as string;
         const user = localStorage.getItem("User profile");
         const userData: User = user && JSON.parse(user);
         const email = userData?.user.email;
