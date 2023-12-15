@@ -12,6 +12,7 @@ function CheckRegistered() {
   const userData: User = user && JSON.parse(user);
   const userEmail = userData?.user.email;
   const userPassword = userData?.user.password;
+  console.log("local storage user datas", userData);
 
   const response = axios
     .post(`${process.env.NEXT_PUBLIC_}`, {

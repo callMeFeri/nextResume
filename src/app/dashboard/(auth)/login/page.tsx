@@ -14,13 +14,12 @@ import type { memberType } from "@/app/types/types";
 //import { signIn } from "next-auth/react";
 
 function LogIn() {
-  const { authenticated, setAuthenticated, apiUrl }: any = useGlobalContext();
+  const {
+    authenticated,
+    setAuthenticated,
+  }: { authenticated?: boolean; setAuthenticated?: any } = useGlobalContext();
   const [showLogStatus, setShowLogStatus] = React.useState<boolean>(false);
   const [error, setError] = React.useState<boolean>(false);
-
-  const premission = localStorage.getItem("premission")
-    ? localStorage.getItem("premission")
-    : "";
 
   const router = useRouter();
 
@@ -95,7 +94,7 @@ function LogIn() {
     //   }
     // });
   };
-  if (premission !== process.env.NEXT_PUBLIC_) {
+  if (!localStorage.getItem("nav")) {
     return (
       <div className="min-h-screen flex justify-center">
         <div className="max-w-screen-xl m-0 sm:m-10 bg-grey shadow sm:rounded-lg flex justify-center flex-1">
@@ -297,9 +296,8 @@ function LogIn() {
         </div>
       </div>
     );
-  } else {
-    router.push("/addpost");
   }
+  router.push("/");
 }
 
 export default LogIn;

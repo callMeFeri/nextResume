@@ -3,7 +3,6 @@ import { useGlobalContext } from "@/app/context/AppContext";
 import { useRouter } from "next/navigation";
 
 import React from "react";
-import { Dispatch } from "react";
 
 function AddPostExitButton() {
   const router = useRouter();

@@ -36,7 +36,7 @@ export default function Register() {
       setTimeout(() => router.push("../dashboard/login"), 1000);
     }
   }, [registerStatus, router]);
-  if (premission !== process.env.NEXT_PUBLIC_) {
+  if (!localStorage.getItem("nav")) {
     return (
       <div className="min-h-screen">
         <h1 className="text-7xl bg-gradient-to-b from-green-800 to-blue-300 bg-clip-text text-transparent pl-[20%] pb-1 pt-20">
@@ -322,7 +322,6 @@ export default function Register() {
         </form>
       </div>
     );
-  } else {
-    router.push("/addpost");
   }
+  router.push("/");
 }
