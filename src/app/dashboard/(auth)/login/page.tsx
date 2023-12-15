@@ -21,6 +21,9 @@ function LogIn() {
   const [showLogStatus, setShowLogStatus] = React.useState<boolean>(false);
   const [error, setError] = React.useState<boolean>(false);
 
+  const local = localStorage.getItem("nav");
+  const navStatus = JSON.stringify(local);
+
   const router = useRouter();
 
   React.useEffect(() => {
@@ -94,7 +97,7 @@ function LogIn() {
     //   }
     // });
   };
-  if (!localStorage.getItem("nav")) {
+  if (navStatus) {
     return (
       <div className="min-h-screen flex justify-center">
         <div className="max-w-screen-xl m-0 sm:m-10 bg-grey shadow sm:rounded-lg flex justify-center flex-1">
@@ -296,8 +299,9 @@ function LogIn() {
         </div>
       </div>
     );
+  } else {
+    router.push("/");
   }
-  router.push("/");
 }
 
 export default LogIn;
