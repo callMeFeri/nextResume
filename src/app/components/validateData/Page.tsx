@@ -61,7 +61,7 @@ export const Page = ({ mode, item }: DataProps) => {
 
   return (
     <>
-      <div className="min-h-screen flex flex-col justify-center">
+      <div className="min-h-screen flex flex-col justify-center items-center text-center ml-[5%]">
         <div className=" gap-10">
           {item.flat().map(
             (post: {
