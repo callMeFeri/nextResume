@@ -3,10 +3,10 @@ import { useGlobalContext } from "@/app/context/AppContext";
 import React from "react";
 
 function AddPostToast(added: boolean) {
-  const { setAddedPost }: any = useGlobalContext();
+  // const { setAddedPost }: any = useGlobalContext();
 
   if (added) {
-    setAddedPost(true);
+    // setAddedPost(true);
     return (
       <div>
         <>

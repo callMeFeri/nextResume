@@ -30,7 +30,8 @@ const AddPostFunction = async (e: FormEvent<HTMLFormElement>) => {
   const response = await fetch(url, newPost);
   //do sm functions with response result
   if (response.ok) {
-    AddPostToast(true);
+    // AddPostToast(true);
+    return null;
   }
   return;
 };
