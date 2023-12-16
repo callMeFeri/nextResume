@@ -44,7 +44,7 @@ function Navbar() {
                   <DarkModeToggle />
                   {authenticated && (
                     <div className="flex items-center">
-                      <li className="text-gray-300 hover:text-white rounded-md px-3 py-2 lg:text-lg sm:text-xs">
+                      <li className="text-gray-300 hover:text-white hover:cursor-no-drop rounded-md px-3 py-2 lg:text-lg sm:text-xs">
                         Wellcome {userName}❤️
                       </li>
                     </div>
