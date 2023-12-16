@@ -17,6 +17,7 @@ function Page() {
   } else if (!premissionAndUsername && !authenticated) {
     return <LogInFirst />;
   }
+  return null;
 }
 
 export default Page;

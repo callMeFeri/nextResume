@@ -3,7 +3,7 @@ import React from "react";
 import GetData from "../components/swrFetching/getData";
 import { useGlobalContext } from "../context/AppContext";
 
-const Blog = () => {
+const ExplorePage = () => {
   const { mode, postUrl }: any = useGlobalContext();
   return (
     <div className="">
@@ -12,4 +12,4 @@ const Blog = () => {
   );
 };
 
-export default Blog;
+export default ExplorePage;

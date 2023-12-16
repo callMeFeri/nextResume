@@ -30,4 +30,19 @@ export type memberType = {
     }
 
   }
+
+  export type DataProps = {
+    mode: string;
+    item: never[];
+  };
+
+  export type Post={
+    
+    postsContent:string,
+    userId?:string,
+    createdDate?:string,
+    title:string,
+    postId?:string,
+    
+  }
   

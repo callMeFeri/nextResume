@@ -1,14 +1,9 @@
-"use client";
 import React from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { useCollapse } from "react-collapsed";
 import _ from "lodash";
 import { Page } from "./Page";
-
-export type Props = {
-  mode: string;
-  item: never[];
-};
+import { DataProps, Post } from "@/app/types/types";
 
 const queryClient = new QueryClient();
 
@@ -34,7 +29,7 @@ export const ReadMoreButton = ({
   postId,
   content,
 }: {
-  postId: string;
+  postId?: string;
   content: string;
 }) => {
   const { getCollapseProps, getToggleProps, isExpanded } = useCollapse();
@@ -66,7 +61,7 @@ export const ReadMoreButton = ({
   );
 };
 
-export default function ExploreDataValidator({ mode, item }: Props) {
+export default function ExploreDataValidator({ mode, item }: DataProps) {
   return (
     <QueryClientProvider client={queryClient}>
       <Page mode={mode} item={item} />

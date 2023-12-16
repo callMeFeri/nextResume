@@ -1,6 +1,5 @@
 import React from "react";
 import AddPostFunction from "./addPostFunction";
-import { useGlobalContext } from "@/app/context/AppContext";
 
 function AddPost({ username }: { username?: string | boolean }) {
   return (
@@ -79,7 +78,6 @@ function AddPost({ username }: { username?: string | boolean }) {
                   </>
                 </div>
               )} */}
-              <AddPost />
               <button className=" px-6 py-2 mx-auto block rounded-md text-lg font-semibold text-indigo-100 bg-indigo-600 shadow-black shadow-sm shadow-inner  hover:bg-white hover:text-black">
                 ADD POST
               </button>

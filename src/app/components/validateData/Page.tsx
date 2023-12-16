@@ -1,10 +1,10 @@
-"use client";
 import React, { useEffect, useRef, useState } from "react";
 import { useInfiniteQuery } from "react-query";
 import Image from "next/image";
-import { Props, fetchPosts, ReadMoreButton } from "./exploreDataValidator";
+import { fetchPosts, ReadMoreButton } from "./exploreDataValidator";
+import type { DataProps } from "@/app/types/types";
 
-export const Page = ({ mode, item }: Props) => {
+export const Page = ({ mode, item }: DataProps) => {
   const loadMoreButtonRef = useRef<HTMLDivElement>(null);
   const [page, setPage] = useState(1);
 
