@@ -37,7 +37,7 @@ export const ReadMoreButton = ({
   return (
     <div className="relative">
       {/* Content to be collapsed */}
-      <div {...getCollapseProps()} className="">
+      <div {...getCollapseProps()} className="text-white">
         {isExpanded ? content : `${content.slice(0, 100)}...`}
       </div>
       <br />

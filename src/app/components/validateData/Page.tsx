@@ -57,7 +57,7 @@ export const Page = ({ mode, item }: DataProps) => {
 
   return (
     <>
-      <div className="min-h-screen gap-5">
+      <div className="min-h-screen gap-10 flex flex-col justify-center ">
         {item.flat().map(
           (post: {
             attributes: {
@@ -67,12 +67,12 @@ export const Page = ({ mode, item }: DataProps) => {
               title: string;
             };
           }) => (
-            <div key={post.attributes.postId}>
+            <div key={post.attributes.postId} className="">
               {post.attributes.postsContent &&
               post.attributes.postsContent.length > 0 ? (
                 <>
                   <div
-                    className={`max-w-sm p-5 rounded mb-5 h-full shadow-lg ${
+                    className={`w-full h-[90%] p-5 rounded mb-5 h-full shadow-lg ${
                       mode === "dark" ? "shadow-white" : "shadow-black"
                     } `}
                   >
@@ -83,7 +83,7 @@ export const Page = ({ mode, item }: DataProps) => {
                     </div>
                     <Image
                       priority
-                      className="w-full h-30 object-cover"
+                      className="w-full h-[50%] object-cover"
                       src="/135042-sky-mountain-range-mountainous-landforms-sunset-nature-1920x1080.jpg"
                       width={1000}
                       height={500}
@@ -94,10 +94,12 @@ export const Page = ({ mode, item }: DataProps) => {
                         {post.attributes.title}
                       </div>
                     </div>
-                    <ReadMoreButton
-                      postId={post.attributes.postId}
-                      content={post.attributes.postsContent}
-                    />
+                    <div className="bottom-2">
+                      <ReadMoreButton
+                        postId={post.attributes.postId}
+                        content={post.attributes.postsContent}
+                      />
+                    </div>
                   </div>
                 </>
               ) : (
