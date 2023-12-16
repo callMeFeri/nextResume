@@ -11,6 +11,7 @@ export const AppProvider = ({ children }: { children: JSX.Element }) => {
   const [mode, setMode] = useState("dark");
   const [authenticated, setAuthenticated] = useState<boolean>(showNavBar);
   const [nav, setNav] = useState<boolean>(false);
+  const [postAdded, setPostAdded] = useState<boolean>(false);
 
   const apiUrl = "http://localhost:1337/api/user-info";
   const postUrl = "http://localhost:1337/api/posts";
@@ -41,6 +42,8 @@ export const AppProvider = ({ children }: { children: JSX.Element }) => {
         postUrl,
         userData,
         nav,
+        postAdded,
+        setPostAdded,
       }}
     >
       <div className={`theme ${mode}`}>{children}</div>

@@ -4,13 +4,13 @@ import AddPostToast from "./addPostToast";
 import type { User } from "@/app/types/types";
 
 const AddPostFunction = async (e: FormEvent<HTMLFormElement>) => {
-  //grabbing infos
   const url = `http://localhost:1337/api/posts`;
 
   //getiing the user name
   const user: string = localStorage.getItem("User profile") as string;
   const userName: User = JSON.parse(user).user.username;
 
+  //grabbing infos
   const postArr = JSON.stringify({
     data: {
       title: (e.target as HTMLFormElement).title.value,
@@ -21,8 +21,6 @@ const AddPostFunction = async (e: FormEvent<HTMLFormElement>) => {
     },
   });
 
-  let dataPost;
-  dataPost = { data: { postArr } };
   //fetching part
   const newPost = {
     method: "post",
@@ -32,8 +30,6 @@ const AddPostFunction = async (e: FormEvent<HTMLFormElement>) => {
   const response = await fetch(url, newPost);
   //do sm functions with response result
   if (response.ok) {
-    const responseData = await response.json();
-    console.log("succ");
     AddPostToast(true);
   }
   return;
