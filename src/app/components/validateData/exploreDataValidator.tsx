@@ -25,41 +25,41 @@ export const FetchPosts = async (page = 1, item: never[]) => {
   });
 };
 
-export const ReadMoreButton = ({
-  postId,
-  content,
-}: {
-  postId?: string;
-  content: string;
-}) => {
-  const { getCollapseProps, getToggleProps, isExpanded } = useCollapse();
+// export const ReadMoreButton = ({
+//   postId,
+//   content,
+// }: {
+//   postId?: string;
+//   content: string;
+// }) => {
+//   const { getCollapseProps, getToggleProps, isExpanded } = useCollapse();
 
-  return (
-    <div className="relative">
-      {/* Content to be collapsed */}
-      <div {...getCollapseProps()} className="text-red-600 text-xl">
-        {isExpanded ? <p>{content}</p> : <p>{`${content.slice(0, 300)}...`}</p>}
-      </div>
-      <br />
-      {/* Read More button */}
-      <button
-        {...getToggleProps()}
-        className="absolute bottom-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 inline-flex items-center h-10 px-5 text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800"
-      >
-        <svg className="w-4 h-4 mr-3 fill-current" viewBox="0 0 20 20">
-          <path
-            d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
-            clipRule="evenodd"
-            fillRule="evenodd"
-          ></path>
-        </svg>
-        <span className="text-lg  w-full text-center ">
-          {isExpanded ? "Read Less" : "Read More"}
-        </span>
-      </button>
-    </div>
-  );
-};
+//   return (
+//     <div className="relative">
+//       {/* Content to be collapsed */}
+//       <div {...getCollapseProps()} className="text-red-600 text-xl">
+//         {isExpanded ? <p>{content}</p> : <p>{`${content.slice(0, 300)}...`}</p>}
+//       </div>
+//       <br />
+//       {/* Read More button */}
+//       <button
+//         {...getToggleProps()}
+//         className="absolute bottom-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 inline-flex items-center h-10 px-5 text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800"
+//       >
+//         <svg className="w-4 h-4 mr-3 fill-current" viewBox="0 0 20 20">
+//           <path
+//             d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
+//             clipRule="evenodd"
+//             fillRule="evenodd"
+//           ></path>
+//         </svg>
+//         <span className="text-lg  w-full text-center ">
+//           {isExpanded ? "Read Less" : "Read More"}
+//         </span>
+//       </button>
+//     </div>
+//   );
+// };
 
 export default function ExploreDataValidator({ mode, item }: DataProps) {
   return (
