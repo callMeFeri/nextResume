@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useInfiniteQuery } from "react-query";
 import Image from "next/image";
-import { fetchPosts, ReadMoreButton } from "./exploreDataValidator";
+import { FetchPosts, ReadMoreButton } from "./exploreDataValidator";
 import type { DataProps } from "@/app/types/types";
 
 export const Page = ({ mode, item }: DataProps) => {
@@ -17,7 +17,7 @@ export const Page = ({ mode, item }: DataProps) => {
     isLoading,
   } = useInfiniteQuery(
     "posts",
-    ({ pageParam }) => fetchPosts(pageParam, item),
+    ({ pageParam }) => FetchPosts(pageParam, item),
     {
       getNextPageParam: (lastPage: any) =>
         lastPage.posts.length > 0 ? page + 1 : undefined,

@@ -7,7 +7,7 @@ import { DataProps, Post } from "@/app/types/types";
 
 const queryClient = new QueryClient();
 
-export const fetchPosts = async (page = 1, item: never[]) => {
+export const FetchPosts = async (page = 1, item: never[]) => {
   const pageSize = 1; // Number of posts per page
   const startIndex = (page - 1) * pageSize;
   const endIndex = startIndex + pageSize;
@@ -37,8 +37,8 @@ export const ReadMoreButton = ({
   return (
     <div className="relative">
       {/* Content to be collapsed */}
-      <div {...getCollapseProps()} className="text-white">
-        {isExpanded ? content : `${content.slice(0, 100)}...`}
+      <div {...getCollapseProps()} className="text-red-600 text-xl">
+        {isExpanded ? <p>{content}</p> : <p>{`${content.slice(0, 300)}...`}</p>}
       </div>
       <br />
       {/* Read More button */}
@@ -53,7 +53,7 @@ export const ReadMoreButton = ({
             fillRule="evenodd"
           ></path>
         </svg>
-        <span className="text-xs">
+        <span className="text-lg  w-full text-center ">
           {isExpanded ? "Read Less" : "Read More"}
         </span>
       </button>
