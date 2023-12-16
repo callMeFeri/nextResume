@@ -77,7 +77,7 @@ export const Page = ({ mode, item }: DataProps) => {
                 post.attributes.postsContent.length > 0 ? (
                   <>
                     <div
-                      className={`w-full h-[90%] p-5 rounded mb-5 h-full shadow-lg ${
+                      className={`w-full h-[90%] p-5 rounded mb-5 h-full flex flex-col text-center shadow-lg ${
                         mode === "dark" ? "shadow-white" : "shadow-black"
                       } `}
                     >
@@ -94,10 +94,11 @@ export const Page = ({ mode, item }: DataProps) => {
                         height={500}
                         alt="Sunset in the mountains"
                       />
-                      <div className="px-6 pb-20">
-                        <div className="font-bold text-xl text-red-600 absolute text-center">
+                      <div className="px-6 ">
+                        <div className="font-bold text-xl text-red-600 absolute ">
                           {post.attributes.title}
                         </div>
+                        <br />
                       </div>
                       <ReadMoreButton
                         content={post.attributes.postsContent}
