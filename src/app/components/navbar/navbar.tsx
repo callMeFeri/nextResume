@@ -6,10 +6,17 @@ import DarkModeToggle from "../darkModeToggle/darkModeToggle";
 import AddPostExitButton from "../addPostButton/addPostExitButton";
 import CheckAuth from "../checkAuth/checkAuth";
 import { useGlobalContext } from "@/app/context/AppContext";
+import { User } from "@/app/types/types";
 
 function Navbar() {
   const { authenticated }: { authenticated?: boolean } = useGlobalContext();
+
   const links = CheckAuth(authenticated as boolean);
+
+  const user = localStorage.getItem("User profile");
+  const userData: User = user && JSON.parse(user);
+  const userName = userData?.user.username;
+
   return (
     <div className="top-0 w-full">
       <nav className="">
@@ -35,6 +42,13 @@ function Navbar() {
                   )}
                   <AddPostExitButton />
                   <DarkModeToggle />
+                  {authenticated && (
+                    <div className="flex items-center">
+                      <li className="text-gray-300 hover:text-white rounded-md px-3 py-2 lg:text-lg sm:text-xs">
+                        Wellcome {userName}❤️
+                      </li>
+                    </div>
+                  )}
                 </ul>
               </div>
             </div>

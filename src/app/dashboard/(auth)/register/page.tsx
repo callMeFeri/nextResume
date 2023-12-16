@@ -7,7 +7,6 @@ import { signUpSchema, TSignUpSchema } from "@/schema/schema";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-import { useGlobalContext } from "@/app/context/AppContext";
 
 export default function Register() {
   const router = useRouter();
