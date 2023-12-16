@@ -94,7 +94,7 @@ export const Page = ({ mode, item }: DataProps) => {
                         height={500}
                         alt="Sunset in the mountains"
                       />
-                      <div className="px-6 ">
+                      <div className="px-6 text-center flex justify-center mb-10">
                         <div className="font-bold text-xl text-red-600 absolute ">
                           {post.attributes.title}
                         </div>

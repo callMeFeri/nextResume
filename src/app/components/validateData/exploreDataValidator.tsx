@@ -37,7 +37,10 @@ export const ReadMoreButton = ({
   return (
     <div className="relative text-center mt-5 absolute">
       {/* Content to be collapsed */}
-      <div {...getCollapseProps()} className="text-red-600 text-xl mb-10">
+      <div
+        {...getCollapseProps()}
+        className="text-red-600 text-xl mb-10 h-full"
+      >
         {isExpanded && content}
       </div>
       <br />
