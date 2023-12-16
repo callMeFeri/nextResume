@@ -1,8 +1,7 @@
 import React from "react";
 import AddPostFunction from "./addPostFunction";
 
-function AddPost() {
-  const currentUserInfo = localStorage.getItem("currentUserInfo");
+function AddPost({ username }: { username?: string | boolean }) {
   return (
     <div>
       <form
@@ -11,47 +10,77 @@ function AddPost() {
           AddPostFunction(e);
         }}
       >
-        <div className=" mx-auto w-10/12 flex flex-col text-gray-800 border border-gray-300 p-4 shadow-lg max-w-2xl">
-          <input
-            className="title bg-gray-100 border border-gray-300 p-2 mb-4 outline-none"
-            placeholder="Title"
-            type="text"
-            required
-            name="title"
-          />
-          <textarea
-            className="description bg-gray-100 sec p-3 h-60 border border-gray-300 outline-none"
-            placeholder="Describe everything about this memory here"
-            required
-            name="textmemory"
-          />
-
-          <div className="icons flex text-gray-500 m-2">
-            <svg
-              className="mr-2 cursor-pointer hover:text-gray-700 border rounded-full p-1 h-7"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"
-              />
-            </svg>
-            <div className="count ml-auto text-gray-400 text-xs font-semibold">
-              0/300
-            </div>
-          </div>
-
-          <div className="buttons flex">
-            <div className="btn border border-gray-300 p-1 px-4 font-semibold cursor-pointer text-gray-500 ml-auto">
-              Cancel
-            </div>
-            <div className="btn border border-indigo-500 p-1 px-4 text-uppercase font-semibold cursor-pointer text-gray-200 ml-2 bg-indigo-500">
-              <button type="submit"> Post</button>
+        <div className="min-h-screen md:px-20 pt-20 text-center ">
+          <div className=" bg-white rounded-md  px-6 py-10 max-w-2xl mx-auto shadow shadow-black">
+            <h1 className="text-center text-2xl font-bold text-black mb-10">
+              ADD POST
+            </h1>
+            <h3 className="text-black">Hi {`${username}`}</h3>
+            <div className="space-y-4">
+              <div className="flex justify-center items-center">
+                <label
+                  htmlFor="title"
+                  className="text-lx font-serif text-black block"
+                >
+                  Title:
+                </label>
+                <br />
+                <input
+                  type="text"
+                  placeholder="title"
+                  name="title"
+                  required
+                  className="ml-2 outline-none py-1 px-2 text-md border-2 rounded-md block"
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="textmemory"
+                  className="block mb-2 text-lg font-serif text-black"
+                >
+                  Description:
+                </label>
+                <textarea
+                  name="textmemory"
+                  rows={15}
+                  required
+                  placeholder="write here.."
+                  className="w-full font-serif p-4 text-gray-600 bg-indigo-50 outline-none rounded-md"
+                />
+              </div>
+              {/* {addedPost && (
+                <div>
+                  <>
+                    <div
+                      className="max-w-xs bg-white border rounded-md shadow-lg dark:bg-gray-800 dark:border-gray-700"
+                      role="alert"
+                    >
+                      <div className="flex p-4">
+                        <div className="flex-shrink-0">
+                          <svg
+                            className="h-4 w-4 text-green-500 mt-0.5"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            fill="currentColor"
+                            viewBox="0 0 16 16"
+                          >
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                          </svg>
+                        </div>
+                        <div className="ml-3">
+                          <p className="text-sm text-gray-700 dark:text-gray-400">
+                            This is a success message.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </>
+                </div>
+              )} */}
+              <button className=" px-6 py-2 mx-auto block rounded-md text-lg font-semibold text-indigo-100 bg-indigo-600 shadow-black shadow-sm shadow-inner  hover:bg-white hover:text-black">
+                ADD POST
+              </button>
             </div>
           </div>
         </div>

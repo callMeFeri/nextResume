@@ -1,6 +1,4 @@
-"use client";
 import React from "react";
-
 import useSWR from "swr";
 
 const fetcher = (args: string) => fetch(args).then((res) => res.json());

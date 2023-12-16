@@ -6,25 +6,32 @@ import DarkModeToggle from "../darkModeToggle/darkModeToggle";
 import AddPostExitButton from "../addPostButton/addPostExitButton";
 import CheckAuth from "../checkAuth/checkAuth";
 import { useGlobalContext } from "@/app/context/AppContext";
+import { User } from "@/app/types/types";
 
 function Navbar() {
-  const { authenticated }: any = useGlobalContext();
-  const links = CheckAuth(authenticated);
+  const { authenticated }: { authenticated?: boolean } = useGlobalContext();
+
+  const links = CheckAuth(authenticated as boolean);
+
+  const user = localStorage.getItem("User profile");
+  const userData: User = user && JSON.parse(user);
+  const userName = userData?.user.username;
+
   return (
-    <div className=" top-0 w-full">
-      <nav className="bg-gray-800 ">
-        <div className="max-w-7xl px-4 sm:px-6 lg:px-8 absolute">
-          <div className="flex h-16 justify-between">
+    <div className="top-0 w-full">
+      <nav className="">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
             <div className="flex items-center">
               <div className="hidden md:block">
-                <ul className="flex items-baseline space-x-4">
+                <ul className="flex items-center space-x-4">
                   {links.map(
                     (link: { title: string; id: number; url: string }) => {
                       const { title, id, url } = link;
                       return (
                         <li
                           key={id}
-                          className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                          className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 lg:text-sm sm:text-xs"
                         >
                           <Link href={url} className="text-yellow-600">
                             {title}
@@ -35,6 +42,13 @@ function Navbar() {
                   )}
                   <AddPostExitButton />
                   <DarkModeToggle />
+                  {authenticated && (
+                    <div className="flex items-center">
+                      <li className="text-gray-300 hover:text-white hover:cursor-no-drop rounded-md px-3 py-2 lg:text-lg sm:text-xs">
+                        Wellcome {userName}❤️
+                      </li>
+                    </div>
+                  )}
                 </ul>
               </div>
             </div>

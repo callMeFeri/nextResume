@@ -1,43 +1,35 @@
-import React from "react";
+import React, { FormEvent } from "react";
 import AddPostToast from "./addPostToast";
 
-const AddPostFunction = async (e: React.FormEvent<HTMLFormElement> | any) => {
-  //grabbing username
-  const currentUserId = localStorage.getItem("currentUserInfo");
+import type { User } from "@/app/types/types";
+
+const AddPostFunction = async (e: FormEvent<HTMLFormElement>) => {
+  const url = `http://localhost:1337/api/posts`;
+
+  //getiing the user name
+  const user: string = localStorage.getItem("User profile") as string;
+  const userName: User = JSON.parse(user).user.username;
+
   //grabbing infos
-  const url = `http://localhost:1337/api/users-data/${currentUserId}`;
-  //merging new post and old one
-  const prevData = await fetch(url);
-  const prevDataResponse = await prevData.json();
-  const postArr = JSON.stringify([
-    {
-      title: e.target.title.value,
-      textmemory: e.target.textmemory.value,
-      id: new Date().getTime().toString(),
+  const postArr = JSON.stringify({
+    data: {
+      title: (e.target as HTMLFormElement).title.value,
+      postsContent: (e.target as HTMLFormElement).textmemory.value,
+      userId: userName,
+      postId: new Date().getTime().toString(),
+      createdDate: new Date().toISOString(),
     },
-  ]);
-  let prevPost;
-  let dataPost;
-  if (prevDataResponse.data.attributes.posts) {
-    prevPost = JSON.parse(prevDataResponse.data.attributes.posts);
-    const mergedPosts = prevPost.concat(JSON.parse(postArr));
-    const mergedPostsString = JSON.stringify(mergedPosts);
-    // const prevPostsContent=prevDataResponse.attributes
-    dataPost = { data: { posts: mergedPostsString } };
-  } else {
-    dataPost = { data: { posts: postArr } };
-  }
+  });
+
   //fetching part
   const newPost = {
-    method: "PUT",
-    body: JSON.stringify(dataPost),
+    method: "post",
+    body: postArr,
     headers: { "Content-Type": "application/json" },
   };
   const response = await fetch(url, newPost);
   //do sm functions with response result
   if (response.ok) {
-    const responseData = await response.json();
-    console.log("succ");
     AddPostToast(true);
   }
   return;

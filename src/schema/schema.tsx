@@ -1,4 +1,4 @@
-import { z, ZodType } from "zod";
+import { z } from "zod";
 export const signUpSchema = z
   .object({
     firstname: z.string().min(3).max(20),
@@ -7,6 +7,7 @@ export const signUpSchema = z
     password: z.string().min(6).max(15),
     confirmPassword: z.string().min(6).max(15),
     username: z.string().min(2),
+    userId: z.string(),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "Passwords do not match",
