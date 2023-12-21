@@ -4,7 +4,7 @@ import { useGlobalContext } from "@/app/context/AppContext";
 
 function DarkModeToggle() {
   const context = useGlobalContext();
-  const { toggle, mode } = context;
+  const { toggle, mode }: any = context;
 
   return (
     <div

@@ -74,7 +74,7 @@ export const Page = ({ mode, item }: DataProps) => {
             }) => (
               <div key={post.attributes.postId} className="">
                 {post.attributes.postsContent &&
-                post.attributes.postsContent.length > 0 ? (
+                post.attributes.postsContent.trim().length > 0 ? (
                   <>
                     <div
                       className={`w-full h-[90%] p-5 rounded mb-5 h-full flex flex-col text-center shadow-lg ${
