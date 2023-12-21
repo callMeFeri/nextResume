@@ -14,9 +14,7 @@ function CheckRegistered() {
         const userData: User = user && JSON.parse(user);
         const email = userData?.user.email;
         const username = userData?.user.username;
-
         const password = localStorage.getItem("User password");
-        console.log("userToken", username);
 
         const response = await axios.post(`${process.env.NEXT_PUBLIC_}`, {
           identifier: email,
@@ -24,13 +22,11 @@ function CheckRegistered() {
         });
 
         if (response.data.user.username === username) {
-          console.log("username", response.data.user.username);
           setResult(username);
         } else {
           setResult(false);
         }
       } catch (error) {
-        console.log("Error:", error);
         setResult(false);
       }
     };
