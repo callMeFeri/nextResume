@@ -33,7 +33,7 @@ export type memberType = {
 
   export type DataProps = {
     mode: string;
-    item: never[];
+    item: (string | undefined)[];
   };
 
   export type Post={
