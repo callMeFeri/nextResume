@@ -28,7 +28,7 @@ function AddPost({ username }: { username?: string | boolean }) {
                 <input
                   type="text"
                   placeholder="title"
-                  name="title"
+                  name="text"
                   required
                   className="ml-2 outline-none py-1 px-2 text-md border-2 rounded-md block"
                 />

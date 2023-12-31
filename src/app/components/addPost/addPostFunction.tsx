@@ -13,7 +13,7 @@ const AddPostFunction = async (e: FormEvent<HTMLFormElement>) => {
   //grabbing infos
   const postArr = JSON.stringify({
     data: {
-      title: (e.target as HTMLFormElement).title.value,
+      title: (e.target as HTMLFormElement).text.value,
       postsContent: (e.target as HTMLFormElement).textmemory.value,
       userId: userName,
       postId: new Date().getTime().toString(),
