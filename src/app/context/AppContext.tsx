@@ -26,6 +26,11 @@ export const AppProvider = ({ children }: { children: JSX.Element }) => {
         : null;
     }
   }, [authenticated, showNavBar, userData]);
+  useEffect(() => {
+    if (postAdded) {
+      setTimeout(() => setPostAdded(false), 3000);
+    }
+  }, [postAdded]);
 
   const toggle = () => {
     setMode((prev) => (prev === "light" ? "dark" : "light"));

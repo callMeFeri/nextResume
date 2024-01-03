@@ -1,9 +1,14 @@
 import React, { FormEvent } from "react";
-import AddPostToast from "./addPostToast";
 
 import type { User } from "@/app/types/types";
 
-const AddPostFunction = async (e: FormEvent<HTMLFormElement>) => {
+const AddPostFunction = async ({
+  e,
+  setPostAdded,
+}: {
+  e: FormEvent<HTMLFormElement>;
+  setPostAdded: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   const url = `http://localhost:1337/api/posts`;
 
   //getiing the user name
@@ -13,15 +18,15 @@ const AddPostFunction = async (e: FormEvent<HTMLFormElement>) => {
   //grabbing infos
   const postArr = JSON.stringify({
     data: {
-      title: (e.target as HTMLFormElement).text.value,
-      postsContent: (e.target as HTMLFormElement).textmemory.value,
+      title: (e.target as HTMLFormElement).text.value as string,
+      postsContent: (e.target as HTMLFormElement).textmemory.value as string,
       userId: userName,
       postId: new Date().getTime().toString(),
       createdDate: new Date().toISOString(),
     },
   });
 
-  //fetching part
+  //posting part
   const newPost = {
     method: "post",
     body: postArr,
@@ -30,8 +35,9 @@ const AddPostFunction = async (e: FormEvent<HTMLFormElement>) => {
   const response = await fetch(url, newPost);
   //do sm functions with response result
   if (response.ok) {
+    console.log("add post succes");
     // AddPostToast(true);
-    return null;
+    return setPostAdded(true);
   }
   return;
 };
