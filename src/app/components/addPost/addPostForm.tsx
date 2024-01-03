@@ -2,6 +2,7 @@ import React from "react";
 import AddPostFunction from "./addPostFunction";
 import { useGlobalContext } from "@/app/context/AppContext";
 import AddPostToast from "./addPostToast";
+import Image from "next/image";
 
 function AddPost({ username }: { username?: string | boolean }) {
   const {
@@ -14,6 +15,7 @@ function AddPost({ username }: { username?: string | boolean }) {
   return (
     <div>
       <form
+        className=""
         onSubmit={(e) => {
           e.preventDefault();
           AddPostFunction({ e, setPostAdded });
@@ -63,7 +65,7 @@ function AddPost({ username }: { username?: string | boolean }) {
                 />
               </div>
 
-              {!postAdded && (
+              {postAdded && (
                 <div className="pl-[25%]">
                   {" "}
                   <AddPostToast />
