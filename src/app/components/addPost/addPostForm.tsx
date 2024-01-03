@@ -13,7 +13,7 @@ function AddPost({ username }: { username?: string | boolean }) {
     setPostAdded: React.Dispatch<React.SetStateAction<boolean>>;
   } = useGlobalContext();
   return (
-    <div>
+    <div className="bg-postbg">
       <form
         className=""
         onSubmit={(e) => {
@@ -23,23 +23,23 @@ function AddPost({ username }: { username?: string | boolean }) {
           (e.target as HTMLFormElement).textmemory.value = "";
         }}
       >
-        <div className="min-h-screen md:px-20 pt-20 text-center items-center justify-center">
-          <div className=" bg-white rounded-md  px-6 py-10 max-w-2xl mx-auto shadow shadow-black">
-            <h1 className="text-center text-2xl font-bold text-black mb-10">
+        <div className="min-h-screen md:px-20 pt-20 text-center items-center justify-center ">
+          <div className=" bg-white rounded-md  px-6 py-10 max-w-2xl mx-auto shadow shadow-black bg-addpost">
+            <h1 className="text-center text-2xl font-bold text-black mb-10 bg-grey-600">
               ADD POST
             </h1>
-            <h3 className="text-xl font-bold">
-              <div className="text-black"> HI</div>{" "}
-              <div className="text-red-700">{`${username}`}</div>
-            </h3>
+            {/* <h3 className="text-xl font-bold">
+              <div className="text-black bg-white max-w-xs"> HI</div>{" "}
+              <div className="text-red-700 bg-white">{`${username}`}</div>
+            </h3> */}
             <div className="space-y-4">
               <div className="flex justify-center items-center">
-                <label
+                {/* <label
                   htmlFor="title"
                   className="text-lx font-serif text-black block"
                 >
                   Title:
-                </label>
+                </label> */}
                 <br />
                 <input
                   type="text"
@@ -50,12 +50,12 @@ function AddPost({ username }: { username?: string | boolean }) {
                 />
               </div>
               <div>
-                <label
+                {/* <label
                   htmlFor="textmemory"
-                  className="block mb-2 text-lg font-serif text-black"
+                  className="block mb-2 text-lg font-serif text-black bg-white"
                 >
                   Description:
-                </label>
+                </label> */}
                 <textarea
                   name="textmemory"
                   rows={15}
