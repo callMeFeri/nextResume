@@ -21,12 +21,15 @@ function AddPost({ username }: { username?: string | boolean }) {
           (e.target as HTMLFormElement).textmemory.value = "";
         }}
       >
-        <div className="min-h-screen md:px-20 pt-20 text-center item-center items-center">
+        <div className="min-h-screen md:px-20 pt-20 text-center items-center justify-center">
           <div className=" bg-white rounded-md  px-6 py-10 max-w-2xl mx-auto shadow shadow-black">
             <h1 className="text-center text-2xl font-bold text-black mb-10">
               ADD POST
             </h1>
-            <h3 className="text-black">Hi {`${username}`}</h3>
+            <h3 className="text-xl font-bold">
+              <div className="text-black"> HI</div>{" "}
+              <div className="text-red-700">{`${username}`}</div>
+            </h3>
             <div className="space-y-4">
               <div className="flex justify-center items-center">
                 <label
@@ -60,8 +63,8 @@ function AddPost({ username }: { username?: string | boolean }) {
                 />
               </div>
 
-              {postAdded && (
-                <div className="items-center text-center">
+              {!postAdded && (
+                <div className="pl-[25%]">
                   {" "}
                   <AddPostToast />
                 </div>

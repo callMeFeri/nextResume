@@ -1,6 +1,6 @@
 function AddPostToast() {
   return (
-    <div className="pl-[25%]">
+    <div className="">
       <>
         <div
           className="max-w-xs bg-white border rounded-md shadow-lg dark:bg-gray-800 dark:border-gray-700"
