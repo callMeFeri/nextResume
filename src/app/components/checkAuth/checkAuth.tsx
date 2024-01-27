@@ -26,6 +26,11 @@ function CheckAuth(auth: boolean) {
         title: "AddPost",
         url: "/addpost",
       },
+      {
+        id: 9,
+        title: "Profile",
+        url: "/profile",
+      },
     ];
   } else {
     return [

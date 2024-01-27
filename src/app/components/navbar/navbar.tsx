@@ -8,14 +8,14 @@ import CheckAuth from "../checkAuth/checkAuth";
 import { useGlobalContext } from "@/app/context/AppContext";
 import { User } from "@/app/types/types";
 
+const user = localStorage.getItem("User profile");
+const userData: User = user && JSON.parse(user);
+export const userName = userData?.user.username;
+
 function Navbar() {
   const { authenticated }: { authenticated?: boolean } = useGlobalContext();
 
   const links = CheckAuth(authenticated as boolean);
-
-  const user = localStorage.getItem("User profile");
-  const userData: User = user && JSON.parse(user);
-  const userName = userData?.user.username;
 
   return (
     <div className="top-0 w-full">
