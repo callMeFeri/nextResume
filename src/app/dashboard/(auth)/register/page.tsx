@@ -38,7 +38,7 @@ export default function Register() {
           className="min-h-[100%] pb-[70px]"
           onSubmit={handleSubmit(
             async ({ confirmPassword, firstname, lastname, ...data }) => {
-              const usreData = {
+              const userData = {
                 username: data.username,
                 email: data.email,
                 password: data.password,
@@ -47,7 +47,7 @@ export default function Register() {
               try {
                 const response = await axios.post(
                   `${process.env.NEXT_PUBLIC_}/register`,
-                  usreData
+                  userData
                 );
 
                 // Handle success.
