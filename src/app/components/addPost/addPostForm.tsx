@@ -12,6 +12,7 @@ function AddPost({ username }: { username?: string | boolean }) {
     postAdded?: boolean;
     setPostAdded: React.Dispatch<React.SetStateAction<boolean>>;
   } = useGlobalContext();
+
   return (
     <div className="bg-postbg">
       <form

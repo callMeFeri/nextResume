@@ -17,4 +17,4 @@ export type TSignUpSchema = z.infer<typeof signUpSchema>;
 export const userNameEdit = z.object({
   userName: z.string().min(2, "user name must at least contain 2 words."),
 });
-export type TuserNameEdit = z.infer<typeof userNameEdit>;
+export type TUserNameEdit = z.infer<typeof userNameEdit>;

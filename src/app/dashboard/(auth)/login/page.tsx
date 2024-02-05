@@ -45,6 +45,7 @@ function LogIn() {
       .then((response) => {
         // Handle success.
         const user = JSON.stringify(response.data);
+
         localStorage.setItem("User profile", user),
           localStorage.setItem("User password", password);
         localStorage.setItem("User token", response.data.jwt),
